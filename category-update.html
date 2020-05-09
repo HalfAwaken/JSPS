@@ -78,7 +78,7 @@
 					if(obj.itemorder!=''&&obj.itemorder){
 						$.ajax({
 							type:"post",
-							url:"http://192.168.0.101:9001/goodsItem/updateItem",
+							url:"http://192.168.0.100/goodsItem/updateItem",
 							data:obj
 						}).then(res=>{
 							layui.use('layer',function(){

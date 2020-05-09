@@ -235,7 +235,7 @@
 				function requestData(){
 					$.ajax({
 						type: "get",
-						url: "http://192.168.0.101:9001/goodsItem/findAll"
+						url: "http://192.168.0.100/goodsItem/findAll"
 					}).then(res => {
 						console.log(res)
 						let datas = res.data;
@@ -280,7 +280,7 @@
 						console.log(e)
 						$.ajax({
 							type:"post",
-							url:"http://192.168.0.101:9001/goodsItem/deleteItem",
+							url:"http://192.168.0.100/goodsItem/deleteItem",
 							data:{id:e.currentTarget.dataset.id}
 						}).then(res=>{
 							layui.use('layer',function(){

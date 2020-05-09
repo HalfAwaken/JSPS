@@ -306,7 +306,7 @@
 			var objs = {};
 			$.ajax({
 				type: "get",
-				url: "http://192.168.0.102:9001/appManage/findAll"
+				url: "http://192.168.0.100/appManage/findAll"
 			}).then(res => {
 				console.log(res)
 				let data = res.data[0]
@@ -420,7 +420,7 @@
 							layer.close(index)
 							$.ajax({
 								method: 'post',
-								url: 'http://192.168.0.102:9001/appManage/updateApp',
+								url: 'http://192.168.0.100/appManage/updateApp',
 								data: objs
 							}).then(res => {
 								console.log(res)

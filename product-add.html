@@ -205,7 +205,7 @@
 				var upload = layui.upload;
 				upload.render({
 					elem:"#loadImg",
-					url:'http://192.168.0.102:9001/order/uploadImg',
+					url:'http://192.168.0.100/order/uploadImg',
 					multiple: true,
 					before: function (obj) {
 		                obj.preview(function(index, file, result){
@@ -234,7 +234,7 @@
 				console.log(obj)
 				$.ajax({
 					type:"post",
-					url:"http://192.168.0.102:9001/goods/addGoods",
+					url:"http://192.168.0.100/goods/addGoods",
 					data:obj
 				}).then(res=>{
 					if(res.code==0){
@@ -269,7 +269,7 @@
 			})
 			$.ajax({
 				type:"get",
-				url:"http://192.168.0.102:9001/goodsItem/findAll"
+				url:"http://192.168.0.100/goodsItem/findAll"
 			}).then(res=>{
 				console.log(res)
 				var datas = res.data;

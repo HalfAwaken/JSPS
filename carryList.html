@@ -56,7 +56,7 @@
 			var carryid;
 			$.ajax({
 				type:"get",
-				url:"http://192.168.0.102:9001/comUser/findAll",
+				url:"http://192.168.0.100/comUser/findAll",
 				data:{usertype:'搬运工'}
 			}).then(res=>{
 				let datas = getRealJsonData(res.data)
@@ -77,7 +77,7 @@
 			$('.addPro').click(function(){
 				$.ajax({
 					type:"post",
-					url:"http://192.168.0.102:9001/order/update",
+					url:"http://192.168.0.100/order/update",
 					data:{orderid:sessionStorage.getItem("nowOrderId"),carryid:carryid}
 				}).then(res=>{
 					layui.use('layer',function(){

@@ -73,7 +73,7 @@
 					if(obj.itemorder!=''&&obj.itemorder){
 						$.ajax({
 							type:"post",
-							url:"http://192.168.0.101:9001/goodsItem/addItem",
+							url:"http://192.168.0.100/goodsItem/addItem",
 							data:obj
 						}).then(res=>{
 							if(res.code==0){

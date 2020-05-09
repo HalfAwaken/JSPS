@@ -225,7 +225,7 @@
 				function requestData(){
 					$.ajax({
 						type: "get",
-						url: "http://192.168.0.102:9001/goods/findAll",
+						url: "http://192.168.0.100/goods/findAll",
 						data: {
 //							usertype:'内部销售'
 						}
@@ -254,7 +254,7 @@
 				var type;
 				$.ajax({
 					type:"get",
-					url:"http://192.168.0.102:9001/goodsItem/findAll"
+					url:"http://192.168.0.100/goodsItem/findAll"
 				}).then(res=>{
 					type = res.data;
 				})
@@ -301,7 +301,7 @@
 							console.log(1212)
 						    $.ajax({
 								type:"post",
-								url:"http://192.168.0.102:9001/goods/deleteById",
+								url:"http://192.168.0.100/goods/deleteById",
 								data:{id}
 							}).then(res=>{
 								console.log(res)

@@ -234,7 +234,7 @@
 				function requestData() {
 					$.ajax({
 						type: "get",
-						url: "http://192.168.0.101:9001/comUser/findAll",
+						url: "http://192.168.0.100/comUser/findAll",
 						data: {
 							usertype: '内部销售'
 						}
@@ -294,7 +294,7 @@
 						let id = $(this)[0].dataset.id;
 						$.ajax({
 							type: "post",
-							url: "http://192.168.0.101:9001/comUser/updateComUser",
+							url: "http://192.168.0.100/comUser/updateComUser",
 							data: {
 								id: id,
 								status: 0
@@ -307,7 +307,7 @@
 						let id = $(this)[0].dataset.id;
 						$.ajax({
 							type: "post",
-							url: "http://192.168.0.101:9001/comUser/updateComUser",
+							url: "http://192.168.0.100/comUser/updateComUser",
 							data: {
 								id: id,
 								status: 1
@@ -320,7 +320,7 @@
 						let id = $(this)[0].dataset.id;
 						$.ajax({
 							type: "post",
-							url: "http://192.168.0.101:9001/comUser/updateComUser",
+							url: "http://192.168.0.100/comUser/updateComUser",
 							data: {
 								id: id,
 								isvip: 1
@@ -333,7 +333,7 @@
 						let id = $(this)[0].dataset.id;
 						$.ajax({
 							type: "post",
-							url: "http://192.168.0.101:9001/comUser/updateComUser",
+							url: "http://192.168.0.100/comUser/updateComUser",
 							data: {
 								id: id,
 								isvip: 0
