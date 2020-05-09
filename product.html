@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>内部销售管理</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+
+	</head>
+	<style type="text/css">
+		.layui-table-cell{
+			height: auto;
+		}
+	</style>
+	<body>
+		<!-- 顶部开始 -->
+		<div class="container">
+			<div class="logo">
+				<a href="index.html" style="color: white;">金莎配送</a>
+			</div>
+			<div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+			<ul class="layui-nav right" lay-filter="">
+				<li class="layui-nav-item">
+					<a href="javascript:;">admin</a>
+					<dl class="layui-nav-child">
+						<!-- 二级菜单 -->
+						<dd>
+							<a href="">个人信息</a>
+						</dd>
+						<dd>
+							<a href="">切换帐号</a>
+						</dd>
+						<dd>
+							<a href="login.html">退出</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="/">前台首页</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 顶部结束 -->
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 左侧菜单开始 -->
+			<div class="left-nav">
+				<div id="side-nav">
+					<ul id="nav">
+						<li class="list" current>
+							<a href="appmanager.html">
+								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe70b;</i> 用户管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="member-list.html">
+										<i class="iconfont">&#xe6a7;</i> 内部销售管理
+									</a>
+								</li>
+								<li>
+									<a href="member-del.html">
+										<i class="iconfont">&#xe6a7;</i> 司机管理
+									</a>
+								</li>
+								<li>
+									<a href="member-level.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工管理
+									</a>
+								</li>
+								<li>
+									<a href="member-kiss.html">
+										<i class="iconfont">&#xe6a7;</i> 外部销售管理
+									</a>
+								</li>
+								<li>
+									<a href="driverLeave.html">
+										<i class="iconfont">&#xe6a7;</i> 司机请假审核
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 商品管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu opened">
+								<li>
+									<a href="category.html">
+										<i class="iconfont">&#xe6a7;</i> 商品分类
+									</a>
+								</li>
+								<li class="current">
+									<a href="product.html">
+										<i class="iconfont">&#xe6a7;</i> 商品列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 轮播管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="setBanner.html">
+										<i class="iconfont">&#xe6a7;</i> 轮播列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 订单管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="order.html">
+										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>
+								<li>
+									<a href="driverOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 司机订单
+									</a>
+								</li>
+								<li>
+									<a href="hamalOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工订单
+									</a>
+								</li>
+								<li>
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 左侧菜单结束 -->
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<!--<form class="layui-form xbs" action="">
+						<div class="layui-form-pane" style="text-align: center;">
+							<div class="layui-form-item" style="display: inline-block;">
+								<label class="layui-form-label xbs768">日期范围</label>
+								<div class="layui-input-inline xbs768">
+									<input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
+								</div>
+								<div class="layui-input-inline xbs768">
+									<input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+								</div>
+								<div class="layui-input-inline" style="width:80px">
+									<button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+								</div>
+							</div>
+						</div>
+					</form>-->
+					<xblock><button class="layui-btn" onclick="member_add('添加商品','product-add.html','700','640')"><i class="layui-icon">&#xe608;</i>添加</button></xblock>
+					<table id="userList" lay-filter="userList"></table>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+		<!-- 底部开始 -->
+		<!--<div class="footer">
+			<div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved. 本后台系统由X前端框架提供前端技术支持</div>
+		</div>-->
+		<!-- 底部结束 -->
+		<!-- 背景切换开始 -->
+		<div class="bg-changer">
+			<div class="swiper-container changer-list">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img class="item" src="images/a.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/b.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/c.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/d.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/e.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/f.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/g.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/h.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/i.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/j.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/k.jpg" alt=""></div>
+					<div class="swiper-slide"><span class="reset">初始化</span></div>
+				</div>
+			</div>
+			<div class="bg-out"></div>
+			<div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+		</div>
+		<!-- 背景切换结束 -->
+		<!-- 页面动态效果 -->
+		<script src="js/datatype.js" type="application/javascript"></script>
+		<script>
+			$(function() {
+				var userLists;
+				var dataList = [];
+//				window.requestData = requestData;
+				function requestData(){
+					$.ajax({
+						type: "get",
+						url: "http://192.168.0.102:9001/goods/findAll",
+						data: {
+//							usertype:'内部销售'
+						}
+					}).then(res => {
+						console.log(res)
+						let datas = res.data
+						dataList = datas;
+						if(datas.length>0){
+							userLists = tableData(datas)
+						}else{
+							userLists = [];
+						}
+						layui.use('table',function(){
+							var table = layui.table;
+							table.reload('userList', {
+								data:userLists.filter(function(data, index){
+									return data;
+								})
+							}); 
+						})
+						setTimeout(function(){
+							userOpreation()
+						},1000)
+					})
+				}
+				var type;
+				$.ajax({
+					type:"get",
+					url:"http://192.168.0.102:9001/goodsItem/findAll"
+				}).then(res=>{
+					type = res.data;
+				})
+				//表数据格式
+				function tableData(data){
+					let arr = [];
+					$.each(data, function(index,ele) {
+						let gooditem;
+						type.forEach((cur,ind)=>{
+							if(cur.id==ele.gooditem){
+								gooditem = cur.itemname
+							}
+						})
+						let obj = {};
+						console.log(ele,index)
+						obj.gooditem = gooditem;
+						obj.goodname = ele.goodname;
+						obj.goodimg = '<img src="'+ele.goodimg+'" style="width: 50px;height: 50px;" />'
+						obj.goodspe = ele.goodspe;
+						obj.price = ele.price;
+						obj.sale = ele.sellnum;
+						obj.goodcount = ele.goodcount;
+						obj.goodorder = ele.goodorder;
+						obj.operation = '<div style="display: flex;justify-content: space-around;height: 100%;align-items: center;"><div class="updateProduct layui-btn layui-btn-normal" data-index="'+index+'" style="height: 28px;line-height: 28px;">修改</div><div class="delProduct layui-btn layui-btn-danger" style="height: 28px;line-height: 28px;" data-id="'+ele.id+'">删除</div></div>';
+						if(ele.isonline==1){
+							obj.status = "<div><span style='color: red;'>上架</span> | <span style='color: #999;'>下架</span></div>"
+						}else{
+							obj.status = "<div><span style='color: #999;'>上架</span> | <span style='color: red;'>下架</span></div>"
+						}
+						arr.push(obj)
+						console.log(obj)
+					});
+					return arr;
+				}
+				function userOpreation(){
+					$('.updateProduct').off().on('click',function(e){
+						sessionStorage.setItem('productItem',JSON.stringify(dataList[e.currentTarget.dataset.index]))
+						member_add('修改商品','product-update.html','700','640')
+					})
+					$('.delProduct').off().on('click',function(e){
+						let id = Number(e.currentTarget.dataset.id);
+						layui.layer.confirm('确定要删除吗?', {icon: 3, title:'提示'}, function(index){
+							layui.layer.close(index)
+							console.log(1212)
+						    $.ajax({
+								type:"post",
+								url:"http://192.168.0.102:9001/goods/deleteById",
+								data:{id}
+							}).then(res=>{
+								console.log(res)
+								if(res.code==0){
+									layui.layer.msg('删除成功');
+									requestData();
+								}else{
+									layui.layer.msg('删除失败');
+								}
+							})
+						});
+						
+					})
+				}
+				layui.use(['laydate', 'table'], function() {
+					var laydate = layui.laydate; //日期插件
+					var table = layui.table;
+					//以上模块根据需要引入
+					//
+					laydate.render({
+						elem: '#LAY_demorange_s'
+					});
+
+					laydate.render({
+						elem: '#LAY_demorange_e'
+					});
+					table.render({
+						elem: "#userList",
+						page: true,
+						cols: [[{
+								field: 'gooditem',
+								title: '分类名称'
+							},
+							{
+								field: 'goodname',
+								title: '商品名称'
+							},
+							{
+								field: 'goodimg',
+								title: '商品图片'
+							},
+							{
+								field: 'goodspe',
+								title: '商品规格'
+							},
+							{
+								field: 'price',
+								title: '售价'
+							},
+							{
+								field: 'status',
+								title: '状态'
+							},
+							{
+								field: 'sale',
+								title: '已售出'
+							},
+							{
+								field: 'goodcount',
+								title: '库存'
+							},
+							{
+								field: 'goodorder',
+								title: '排序'
+							},
+							{
+								field: 'operation',
+								title: '操作'
+							}
+						]],
+						data:userLists,
+						done:function(){
+							userOpreation()
+						},
+						jump:function(){
+							userOpreation()
+						}
+					})
+
+				});
+				setTimeout(function(){
+					requestData();
+				},500)
+			})
+			
+			/*用户-添加*/
+			function member_add(title, url, w, h) {
+				x_admin_show(title, url, w, h);
+			}
+		</script>
+
+	</body>
+
+</html>

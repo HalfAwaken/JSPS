@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>内部销售增加</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+
+	</head>
+
+	<body>
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content" style="min-height: 0;">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<form class="layui-form">
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red">*</span>选择搬运工
+                    </label>
+							<div class="layui-input-inline">
+								<select class="category" name="category" lay-filter="category">
+									
+								</select>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                    </label>
+							<div class="layui-btn addPro">
+								确定
+							</div>
+						</div>
+					</form>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+
+	</body>
+	<script src="js/datatype.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(function() {
+			var carryid;
+			$.ajax({
+				type:"get",
+				url:"http://192.168.0.102:9001/comUser/findAll",
+				data:{usertype:'搬运工'}
+			}).then(res=>{
+				let datas = getRealJsonData(res.data)
+				console.log(datas)
+				let str = '';
+				datas.forEach(cur=>{
+					str = str + '<option value="'+cur.id+'">'+cur.username+'  '+cur.phone+'</option>';
+				})
+				$('.category').html(str)
+				layui.use('form',function(){
+					var form = layui.form;
+					form.on('select(category)',function(data){
+						console.log(data)
+						carryid = data.value;
+					})
+				})
+			})
+			$('.addPro').click(function(){
+				$.ajax({
+					type:"post",
+					url:"http://192.168.0.102:9001/order/update",
+					data:{orderid:sessionStorage.getItem("nowOrderId"),carryid:carryid}
+				}).then(res=>{
+					layui.use('layer',function(){
+						layui.layer.msg('添加成功');
+						setTimeout(function(){
+							var index = parent.layer.getFrameIndex(window.name);
+							parent.location.reload();
+							parent.layer.close(index);
+						},1500)
+					})
+				})
+			})
+		})
+	</script>
+
+</html>

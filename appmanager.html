@@ -1,0 +1,444 @@
+﻿<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>金莎配送</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+		<style type="text/css">
+			input::placeholder {
+				color: #999 !important;
+			}
+			
+			.layui-form-label {
+				width: 100px !important;
+			}
+			
+			.layui-form-item .layui-input-inline {
+				width: 400px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 顶部开始 -->
+		<div class="container">
+			<div class="logo">
+				<a href="index.html" style="color: white;">金莎配送</a>
+			</div>
+			<div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+			<ul class="layui-nav right" lay-filter="">
+				<li class="layui-nav-item">
+					<a href="javascript:;">admin</a>
+					<dl class="layui-nav-child">
+						<!-- 二级菜单 -->
+						<dd>
+							<a href="">个人信息</a>
+						</dd>
+						<dd>
+							<a href="">切换帐号</a>
+						</dd>
+						<dd>
+							<a href="login.html">退出</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="/">前台首页</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 顶部结束 -->
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 左侧菜单开始 -->
+			<div class="left-nav">
+				<div id="side-nav">
+					<ul id="nav">
+						<li class="list" current>
+							<a href="appmanager.html">
+								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe70b;</i> 用户管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="member-list.html">
+										<i class="iconfont">&#xe6a7;</i> 内部销售管理
+									</a>
+								</li>
+								<li>
+									<a href="member-del.html">
+										<i class="iconfont">&#xe6a7;</i> 司机管理
+									</a>
+								</li>
+								<li>
+									<a href="member-level.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工管理
+									</a>
+								</li>
+								<li>
+									<a href="member-kiss.html">
+										<i class="iconfont">&#xe6a7;</i> 外部销售管理
+									</a>
+								</li>
+								<li>
+									<a href="driverLeave.html">
+										<i class="iconfont">&#xe6a7;</i> 司机请假审核
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 商品管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="category.html">
+										<i class="iconfont">&#xe6a7;</i> 商品分类
+									</a>
+								</li>
+								<li>
+									<a href="product.html">
+										<i class="iconfont">&#xe6a7;</i> 商品列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 轮播管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="setBanner.html">
+										<i class="iconfont">&#xe6a7;</i> 轮播列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 订单管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="order.html">
+										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>
+								<li>
+									<a href="driverOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 司机订单
+									</a>
+								</li>
+								<li>
+									<a href="hamalOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工订单
+									</a>
+								</li>
+								<li>
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 左侧菜单结束 -->
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content">
+					<!-- 右侧内容框架，更改从这里开始 -->
+
+					<form class="layui-form" id="subMsg">
+						<div class="layui-form-item" style="font-size: 24px;">站点管理</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red">*</span>小程序名
+                    </label>
+							<div class="layui-input-inline">
+								<input type="text" name="appname" placeholder="请输入小程序名" class="layui-input phone appname">
+							</div>
+							<!--<div class="layui-form-mid layui-word-aux">
+								<span class="x-red">*</span>将会成为您唯一的登入名
+							</div>-->
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red">*</span>会员折扣
+                    </label>
+							<div class="layui-input-inline">
+								<input type="number" name="discount" placeholder="请输入会员折扣" class="layui-input username discount">
+							</div>
+							<div class="layui-form-mid layui-word-aux" style="margin-left: 10px;font-size: 24px;">
+								%
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red">*</span>门店地址
+                    </label>
+							<div class="layui-input-inline">
+								<input type="text" name="addre" placeholder="请输入门店地址" class="layui-input password addre">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red">*</span>门店经纬度
+                    </label>
+							<div class="layui-input-inline">
+								<input type="text" name="points" placeholder="请输入门店经纬度或点击右侧查询所在位置" class="layui-input surepassword points">
+							</div>
+							<div class="layui-form-mid layui-word-aux searchplace" style="margin-left: 10px;">
+								门店经纬度查询
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red">*</span>配送范围设置
+                    </label>
+							<div class="layui-input-inline">
+								<input type="number" name="scope" placeholder="请输入配送范围" class="layui-input surepassword scope">
+							</div>
+							<div class="layui-form-mid layui-word-aux" style="margin-left: 10px;">
+								公里
+							</div>
+						</div>
+						<div class="layui-form-item" style="font-size: 24px;">运费设置</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red">*</span>一方车运费
+                    </label>
+							<div class="layui-input-inline">
+								<input type="number" name="onecartPrice" data-type="onecart" placeholder="请输入一方车运费" class="layui-input surepassword cartype cartypeone">
+							</div>
+							<div class="layui-form-mid layui-word-aux" style="margin-left: 10px;">
+								元
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red">*</span>三方车运费
+                    </label>
+							<div class="layui-input-inline">
+								<input type="number" name="threecartPrice" data-type="three" placeholder="请输入三方车运费" class="layui-input surepassword cartype cartypetwo">
+							</div>
+							<div class="layui-form-mid layui-word-aux" style="margin-left: 10px;">
+								元
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red">*</span>五方车运费
+                    </label>
+							<div class="layui-input-inline">
+								<input type="number" name="fivecartPrice" data-type="five" placeholder="请输入五方车运费" class="layui-input surepassword cartype cartypethree">
+							</div>
+							<div class="layui-form-mid layui-word-aux" style="margin-left: 10px;">
+								元
+							</div>
+						</div>
+						
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                    </label>
+							<div class="layui-btn submit">保存</div>
+						</div>
+					</form>
+
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+		<!-- 底部开始 -->
+		<!--<div class="footer">
+        <div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved. 本后台系统由X前端框架提供前端技术支持</div>  
+    </div>-->
+		<!-- 底部结束 -->
+		<!-- 背景切换开始 -->
+		<div class="bg-changer">
+			<div class="swiper-container changer-list">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img class="item" src="images/a.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/b.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/c.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/d.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/e.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/f.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/g.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/h.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/i.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/j.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/k.jpg" alt=""></div>
+					<div class="swiper-slide"><span class="reset">初始化</span></div>
+				</div>
+			</div>
+			<div class="bg-out"></div>
+			<div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+		</div>
+		<!-- 背景切换结束 -->
+
+	</body>
+	<script type="text/javascript">
+		$(function() {
+			var objs = {};
+			$.ajax({
+				type: "get",
+				url: "http://192.168.0.102:9001/appManage/findAll"
+			}).then(res => {
+				console.log(res)
+				let data = res.data[0]
+				$('.appname').val(data.appname);
+				$('.discount').val(data.discount);
+				$('.addre').val(data.addre);
+				$('.points').val(data.points);
+				$('.scope').val(data.scope);
+				$('.cartypeone').val(data.onecart);
+				$('.cartypetwo').val(data.three);
+				$('.cartypethree').val(data.five);
+				$('.layerone').val(data.carrystairs);
+				$('.layertwo').val(data.carryelevator);
+				$('.riceone').val(data.unloadstatirs);
+				$('.ricetwo').val(data.unloadelevator);
+				$('.secondsone').val(data.turnstatirs);
+				$('.secondstwo').val(data.turnelevator);
+				objs = data;
+			})
+			var obj = {};
+
+			obj.appmanage = {};
+			obj.cost = [];
+			obj.driver = [{}, {}, {}];
+			$('.appname').on('input', function(e) {
+				//			console.log(e)
+				obj.appmanage.appname = e.detail.value || e.target.value;
+				objs.appname = e.target.value;
+			})
+			$('.discount').on('input', function(e) {
+				obj.appmanage.discount = (Number(e.target.value) / 100).toString();
+				objs.discount = Number(e.target.value);
+			})
+			$('.addre').on('input', function(e) {
+				obj.appmanage.addre = e.detail.value || e.target.value;
+				objs.addre = e.target.value;
+			})
+			$('.scope').on('input', function(e) {
+				obj.appmanage.scope = e.detail.value || e.target.value;
+				objs.scope = Number(e.target.value);
+			})
+			$('.points').on('input', function(e) {
+				obj.appmanage.points = e.detail.value || e.target.value;
+				objs.points = e.target.value;
+			})
+			$('.cartype').on('input', function(e) {
+				let k = {};
+				let flag = true;
+				k.price = e.detail.value || e.target.value;
+				k.cartype = e.currentTarget.dataset.type;
+				if(obj.cost.length > 0) {
+					obj.cost.forEach((cur, index) => {
+						if(cur.cartype == k.cartype) {
+							obj.cost[index] = k;
+							flag = false;
+						}
+					})
+					if(flag) {
+						obj.cost.push(k);
+					}
+				} else {
+					obj.cost.push(k);
+				}
+				objs[e.currentTarget.dataset.type] = Number(e.target.value);
+			})
+			$('.layer').on('input', function(e) {
+				obj.driver[0][e.currentTarget.dataset.type] = e.detail.value || e.target.value;
+				obj.driver[0].pricetype = '搬运价格';
+				if(e.currentTarget.dataset.type == 'stairs') {
+					objs.carrystairs = Number(e.target.value);
+				} else {
+					objs.carryelevator = Number(e.target.value);
+				}
+			})
+			$('.rice').on('input', function(e) {
+				obj.driver[1][e.currentTarget.dataset.type] = e.detail.value || e.target.value;
+				obj.driver[1].pricetype = '卸货价格';
+				if(e.currentTarget.dataset.type == 'stairs') {
+					objs.unloadstatirs = Number(e.target.value);
+				} else {
+					objs.unloadelevator = Number(e.target.value);
+				}
+			})
+			$('.seconds').on('input', function(e) {
+				obj.driver[2][e.currentTarget.dataset.type] = e.detail.value || e.target.value;
+				obj.driver[2].pricetype = '转运价格';
+				if(e.currentTarget.dataset.type == 'stairs') {
+					objs.turnstatirs = Number(e.target.value);
+				} else {
+					objs.turnelevator = Number(e.target.value);
+				}
+			})
+
+			$('.submit').click(function() {
+				if(typeof(obj.appmanage) != 'string') {
+					obj.appmanage = JSON.stringify(obj.appmanage);
+				}
+				if(typeof(obj.cost) != 'string') {
+					obj.cost = JSON.stringify(obj.cost);
+				}
+				if(typeof(obj.driver) != 'string') {
+					obj.driver = JSON.stringify(obj.driver);
+				}
+				console.log(objs)
+				layui.use('layer', function() {
+					var layer = layui.layer;
+					layer.confirm('确定要修改吗?', {
+						title: "系统提示",
+						btn: ["继续", "取消"],
+						btn1: function(index) {
+							layer.close(index)
+							$.ajax({
+								method: 'post',
+								url: 'http://192.168.0.102:9001/appManage/updateApp',
+								data: objs
+							}).then(res => {
+								console.log(res)
+								if(res.code == 0) {
+									layer.msg('修改成功')
+								}
+							})
+						},
+						btn2: function() {
+
+						}
+					})
+				})
+			})
+			$('.searchplace').click(function() {
+				window.open('https://lbs.qq.com/tool/getpoint/')
+			})
+		})
+	</script>
+
+</html>

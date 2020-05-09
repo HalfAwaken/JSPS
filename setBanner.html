@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>内部销售管理</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+
+	</head>
+	<style type="text/css">
+		.layui-table-cell{
+			height: auto;
+		}
+	</style>
+	<body>
+		<!-- 顶部开始 -->
+		<div class="container">
+			<div class="logo">
+				<a href="index.html" style="color: white;">金莎配送</a>
+			</div>
+			<div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+			<ul class="layui-nav right" lay-filter="">
+				<li class="layui-nav-item">
+					<a href="javascript:;">admin</a>
+					<dl class="layui-nav-child">
+						<!-- 二级菜单 -->
+						<dd>
+							<a href="">个人信息</a>
+						</dd>
+						<dd>
+							<a href="">切换帐号</a>
+						</dd>
+						<dd>
+							<a href="login.html">退出</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="/">前台首页</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 顶部结束 -->
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 左侧菜单开始 -->
+			<div class="left-nav">
+				<div id="side-nav">
+					<ul id="nav">
+						<li class="list" current>
+							<a href="appmanager.html">
+								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe70b;</i> 用户管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="member-list.html">
+										<i class="iconfont">&#xe6a7;</i> 内部销售管理
+									</a>
+								</li>
+								<li>
+									<a href="member-del.html">
+										<i class="iconfont">&#xe6a7;</i> 司机管理
+									</a>
+								</li>
+								<li>
+									<a href="member-level.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工管理
+									</a>
+								</li>
+								<li>
+									<a href="member-kiss.html">
+										<i class="iconfont">&#xe6a7;</i> 外部销售管理
+									</a>
+								</li>
+								<li>
+									<a href="driverLeave.html">
+										<i class="iconfont">&#xe6a7;</i> 司机请假审核
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 商品管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="category.html">
+										<i class="iconfont">&#xe6a7;</i> 商品分类
+									</a>
+								</li>
+								<li>
+									<a href="product.html">
+										<i class="iconfont">&#xe6a7;</i> 商品列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 轮播管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu opened">
+								<li class="current">
+									<a href="setBanner.html">
+										<i class="iconfont">&#xe6a7;</i> 轮播列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 订单管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="order.html">
+										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>
+								<li>
+									<a href="driverOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 司机订单
+									</a>
+								</li>
+								<li>
+									<a href="hamalOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工订单
+									</a>
+								</li>
+								<li>
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 左侧菜单结束 -->
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<!--<form class="layui-form xbs" action="">
+						<div class="layui-form-pane" style="text-align: center;">
+							<div class="layui-form-item" style="display: inline-block;">
+								<label class="layui-form-label xbs768">日期范围</label>
+								<div class="layui-input-inline xbs768">
+									<input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
+								</div>
+								<div class="layui-input-inline xbs768">
+									<input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+								</div>
+								<div class="layui-input-inline" style="width:80px">
+									<button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+								</div>
+							</div>
+						</div>
+					</form>-->
+					<xblock><button class="layui-btn" onclick="member_add('添加轮播图','banner-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button></xblock>
+					<table id="userList" lay-filter="userList"></table>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+		<!-- 底部开始 -->
+		<!--<div class="footer">
+			<div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved. 本后台系统由X前端框架提供前端技术支持</div>
+		</div>-->
+		<!-- 底部结束 -->
+		<!-- 背景切换开始 -->
+		<div class="bg-changer">
+			<div class="swiper-container changer-list">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img class="item" src="images/a.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/b.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/c.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/d.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/e.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/f.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/g.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/h.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/i.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/j.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/k.jpg" alt=""></div>
+					<div class="swiper-slide"><span class="reset">初始化</span></div>
+				</div>
+			</div>
+			<div class="bg-out"></div>
+			
+			<div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+		</div>
+		<!-- 背景切换结束 -->
+		<!-- 页面动态效果 -->
+		<script src="js/datatype.js" type="application/javascript"></script>
+		<script>
+			$(function() {
+				var userLists = [];
+				var dataList;
+				function requestData() {
+					$.ajax({
+						type: "get",
+						url: "http://192.168.0.100:9001/superUser/findAll"
+					}).then(res => {
+						console.log(res)
+						let datas = res.data;
+						dataList = res.data;
+						if(datas.length > 0) {
+							userLists = tableData(datas)
+						} else {
+							userLists = [];
+						}
+						layui.use('table', function() {
+							var table = layui.table;
+							table.reload('userList', {
+								data: userLists.filter(function(data, index) {
+									return data;
+								})
+							});
+						})
+						setTimeout(function() {
+							userOpreation()
+						}, 1000)
+					})
+				}
+				//表数据格式
+				function tableData(data) {
+					let arr = [];
+					$.each(data, function(index, ele) {
+						let obj = {};
+						console.log(ele, index)
+						obj.imgpath = '<img src="'+ele.imgpath+'" style="width: 200px;max-width: 200px;" />';
+						obj.status = ele.status==0?'否':'是';
+						obj.operation = "<div><span style='color: #76EE00;' class='update' data-id='"+ele.id+"' data-index='"+index+"'>修改</span> | <span style='color: #999;' class='del' data-index='"+index+"' data-id='" + ele.id + "'>删除</span></div>"
+						arr.push(obj)
+						console.log(obj)
+					});
+					return arr;
+				}
+
+				function userOpreation() {
+					$('.update').click(function(e) {
+						sessionStorage.setItem("bannerList",JSON.stringify(dataList[e.currentTarget.dataset.index]))
+						member_add('修改轮播图','banner-update.html','600','500')
+					})
+					$('.del').click(function(e) {
+						let id = dataList[e.currentTarget.dataset.index].id;
+						$.ajax({
+							type: "post",
+							url: "http://192.168.0.100:9001/superUser/deleteImg",
+							data: {
+								id: id
+							}
+						}).then(res => {
+							if(res.code==0){
+								layui.use('layer',function(){
+									layui.layer.msg('删除成功')
+									requestData();
+								})
+							}
+						})
+					})
+				}
+				layui.use(['laydate', 'table'], function() {
+					var laydate = layui.laydate; //日期插件
+					var table = layui.table;
+					//以上模块根据需要引入
+					//
+					laydate.render({
+						elem: '#LAY_demorange_s'
+					});
+
+					laydate.render({
+						elem: '#LAY_demorange_e'
+					});
+					table.render({
+						elem: "#userList",
+						page: true,
+						cols: [
+							[{
+									field: 'imgpath',
+									title: '轮播图'
+								},
+								{
+									field: 'status',
+									title: '是否跳到下单页'
+								},
+								{
+									field: 'operation',
+									title: '操作'
+								}
+							]
+						],
+						data: userList,
+						done: function() {
+
+						}
+					})
+
+				});
+				setTimeout(function() {
+					requestData();
+				}, 100)
+			})
+
+			/*用户-添加*/
+			function member_add(title, url, w, h) {
+				x_admin_show(title, url, w, h);
+			}
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,395 @@
+﻿<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>内部销售管理</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+
+	</head>
+
+	<body>
+		<!-- 顶部开始 -->
+		<div class="container">
+			<div class="logo">
+				<a href="index.html" style="color: white;">金莎配送</a>
+			</div>
+			<div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+			<ul class="layui-nav right" lay-filter="">
+				<li class="layui-nav-item">
+					<a href="javascript:;">admin</a>
+					<dl class="layui-nav-child">
+						<!-- 二级菜单 -->
+						<dd>
+							<a href="">个人信息</a>
+						</dd>
+						<dd>
+							<a href="">切换帐号</a>
+						</dd>
+						<dd>
+							<a href="login.html">退出</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="/">前台首页</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 顶部结束 -->
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 左侧菜单开始 -->
+			<div class="left-nav">
+				<div id="side-nav">
+					<ul id="nav">
+						<li class="list" current>
+							<a href="appmanager.html">
+								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe70b;</i> 用户管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu opened">
+								<li>
+									<a href="member-list.html">
+										<i class="iconfont">&#xe6a7;</i> 内部销售管理
+									</a>
+								</li>
+								<li>
+									<a href="member-del.html">
+										<i class="iconfont">&#xe6a7;</i> 司机管理
+									</a>
+								</li>
+								<li class="current">
+									<a href="member-level.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工管理
+									</a>
+								</li>
+								<li>
+									<a href="member-kiss.html">
+										<i class="iconfont">&#xe6a7;</i> 外部销售管理
+									</a>
+								</li>
+								<li>
+									<a href="driverLeave.html">
+										<i class="iconfont">&#xe6a7;</i> 司机请假审核
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 商品管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="category.html">
+										<i class="iconfont">&#xe6a7;</i> 商品分类
+									</a>
+								</li>
+								<li>
+									<a href="product.html">
+										<i class="iconfont">&#xe6a7;</i> 商品列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 轮播管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="setBanner.html">
+										<i class="iconfont">&#xe6a7;</i> 轮播列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 订单管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="order.html">
+										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>
+								<li>
+									<a href="driverOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 司机订单
+									</a>
+								</li>
+								<li>
+									<a href="hamalOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工订单
+									</a>
+								</li>
+								<li>
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 左侧菜单结束 -->
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<!--<form class="layui-form xbs" action="">
+						<div class="layui-form-pane" style="text-align: center;">
+							<div class="layui-form-item" style="display: inline-block;">
+								<label class="layui-form-label xbs768">日期范围</label>
+								<div class="layui-input-inline xbs768">
+									<input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
+								</div>
+								<div class="layui-input-inline xbs768">
+									<input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+								</div>
+								<div class="layui-input-inline" style="width:80px">
+									<button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+								</div>
+							</div>
+						</div>
+					</form>-->
+					<xblock><button class="layui-btn" onclick="member_add('添加用户','member-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button></xblock>
+					<table id="userList" lay-filter="userList"></table>
+					<div id="operation" style="display: none;">
+						<a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
+							<i class="layui-icon">&#xe601;</i>
+						</a>
+						<a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-edit.html','4','','510')" class="ml-5" style="text-decoration:none">
+							<i class="layui-icon">&#xe642;</i>
+						</a>
+						<a style="text-decoration:none" onclick="member_password('修改密码','member-password.html','10001','600','400')" href="javascript:;" title="修改密码">
+							<i class="layui-icon">&#xe631;</i>
+						</a>
+						<a title="删除" href="javascript:;" onclick="member_del(this,'1')" style="text-decoration:none">
+							<i class="layui-icon">&#xe640;</i>
+						</a>
+					</div>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+		<!-- 底部开始 -->
+		<!--<div class="footer">
+			<div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved. 本后台系统由X前端框架提供前端技术支持</div>
+		</div>-->
+		<!-- 底部结束 -->
+		<!-- 背景切换开始 -->
+		<div class="bg-changer">
+			<div class="swiper-container changer-list">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img class="item" src="images/a.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/b.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/c.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/d.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/e.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/f.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/g.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/h.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/i.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/j.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/k.jpg" alt=""></div>
+					<div class="swiper-slide"><span class="reset">初始化</span></div>
+				</div>
+			</div>
+			<div class="bg-out"></div>
+			<div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+		</div>
+		<!-- 背景切换结束 -->
+		<!-- 页面动态效果 -->
+		<script src="js/datatype.js" type="application/javascript"></script>
+		<script>
+			$(function() {
+				var userLists = [];
+				//				window.requestData = requestData;
+				function requestData() {
+					$.ajax({
+						type: "get",
+						url: "http://192.168.0.101:9001/comUser/findAll",
+						data: {
+							usertype: '搬运工'
+						}
+					}).then(res => {
+						console.log(res)
+						let datas = getRealJsonData(res.data)
+						if(datas.length > 0) {
+							userLists = tableData(datas)
+						} else {
+							userLists = [];
+						}
+						layui.use('table', function() {
+							var table = layui.table;
+							table.reload('userList', {
+								data: userLists.filter(function(data, index) {
+									return data;
+								})
+							});
+						})
+						setTimeout(function() {
+							userOpreation()
+						}, 1000)
+					})
+				}
+				//表数据格式
+				function tableData(data) {
+					let arr = [];
+					$.each(data, function(index, ele) {
+						let obj = {};
+						console.log(ele, index)
+						obj.nickname = ele.username;
+						obj.username = ele.phone;
+						obj.password = ele.password;
+						//						if(ele.isvip==0){
+						//							obj.vip = "<div class='becomeVip' data-id='"+ele.id+"' style='width: 80px;height: 30px;background: red;color: white;text-align: center;line-height: 30px;'>设为会员</div>"
+						//						}else{
+						//							obj.vip = "<div class='cancelVip' data-id='"+ele.id+"' style='width: 80px;height: 30px;background: #999;color: white;text-align: center;line-height: 30px;'>取消会员</div>"
+						//						}
+						if(ele.status == 1) {
+							obj.operation = "<div><span style='color: #76EE00;'>正常</span> | <span style='color: #999;' class='stopUser' data-id='" + ele.id + "'>停用</span></div>"
+						} else {
+							obj.operation = "<div><span style='color: #999;' class='openUser' data-id='" + ele.id + "'>启用</span> | <span style='color: red;'>已停用</span></div>"
+						}
+						arr.push(obj)
+					});
+					return arr;
+				}
+
+				function userOpreation() {
+					$('.stopUser').click(function() {
+						console.log($(this))
+						let id = $(this)[0].dataset.id;
+						$.ajax({
+							type: "post",
+							url: "http://192.168.0.101:9001/comUser/updateComUser",
+							data: {
+								id: id,
+								status: 0
+							}
+						}).then(res => {
+							requestData();
+						})
+					})
+					$('.openUser').click(function() {
+						let id = $(this)[0].dataset.id;
+						$.ajax({
+							type: "post",
+							url: "http://192.168.0.101:9001/comUser/updateComUser",
+							data: {
+								id: id,
+								status: 1
+							}
+						}).then(res => {
+							requestData();
+						})
+					})
+					//					$('.becomeVip').click(function(){
+					//						let id = $(this)[0].dataset.id;
+					//						$.ajax({
+					//							type:"post",
+					//							url:"http://192.168.0.102:9001/comUser/updateComUser",
+					//							data:{
+					//								id:id,
+					//								isvip:1
+					//							}
+					//						}).then(res=>{
+					//							requestData();
+					//						})
+					//					})
+					//					$('.cancelVip').click(function(){
+					//						let id = $(this)[0].dataset.id;
+					//						$.ajax({
+					//							type:"post",
+					//							url:"http://192.168.0.102:9001/comUser/updateComUser",
+					//							data:{
+					//								id:id,
+					//								isvip:0
+					//							}
+					//						}).then(res=>{
+					//							requestData();
+					//						})
+					//					})
+				}
+				layui.use(['laydate', 'table'], function() {
+					var laydate = layui.laydate; //日期插件
+					var table = layui.table;
+					//以上模块根据需要引入
+					//
+					laydate.render({
+						elem: '#LAY_demorange_s'
+					});
+
+					laydate.render({
+						elem: '#LAY_demorange_e'
+					});
+					table.render({
+						elem: "#userList",
+						page: true,
+						cols: [
+							[{
+									field: 'nickname',
+									title: '销售姓名'
+								},
+								{
+									field: 'username',
+									title: '销售账户'
+								},
+								{
+									field: 'password',
+									title: '账户密码'
+								},
+								{
+									field: 'operation',
+									title: '操作'
+								}
+							]
+						],
+						data: userList,
+						done: function() {
+
+						}
+					})
+
+				});
+				setTimeout(function() {
+					requestData();
+				}, 100)
+			})
+
+			/*用户-添加*/
+			function member_add(title, url, w, h) {
+				x_admin_show(title, url, w, h);
+			}
+		</script>
+
+	</body>
+
+</html>

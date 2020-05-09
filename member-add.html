@@ -1,0 +1,202 @@
+﻿<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>内部销售增加</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+
+	</head>
+
+	<body>
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content" style="min-height: 0;">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<form class="layui-form">
+						<div class="layui-form-item">
+							<label for="L_email" class="layui-form-label">
+                        <span class="x-red">*</span>手机号
+                    </label>
+							<div class="layui-input-inline">
+								<input type="text" id="" name="" required="" lay-verify="" autocomplete="off" class="layui-input phone">
+							</div>
+							<div class="layui-form-mid layui-word-aux">
+								<span class="x-red">*</span>将会成为您唯一的登入名
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_username" class="layui-form-label">
+                        <span class="x-red">*</span>昵称
+                    </label>
+							<div class="layui-input-inline">
+								<input type="text" id="L_username" name="nickName" required="" lay-verify="nikename" autocomplete="off" class="layui-input username">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_pass" class="layui-form-label">
+                        <span class="x-red">*</span>密码
+                    </label>
+							<div class="layui-input-inline">
+								<input type="password" id="L_pass" name="pass" required="" lay-verify="pass" autocomplete="off" class="layui-input password">
+							</div>
+							<div class="layui-form-mid layui-word-aux">
+								6到16个字符
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_repass" class="layui-form-label">
+                        <span class="x-red">*</span>确认密码
+                    </label>
+							<div class="layui-input-inline">
+								<input type="password" id="L_repass" name="repass" required="" lay-verify="repass" autocomplete="off" class="layui-input surepassword">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_repass" class="layui-form-label">
+                        <span class="x-red">*</span>用户类型
+                    </label>
+							<div class="layui-input-inline">
+								<select class="user_type" name="interest" lay-filter="aihao">
+									<option value="内部销售">内部销售</option>
+									<option value="司机">司机</option>
+									<option value="搬运工">搬运工</option>
+									<option value="外部销售">外部销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-form-item" id="car" style="display: none;">
+							<label for="L_repass" class="layui-form-label">
+                        <span class="x-red">*</span>车型
+                    </label>
+							<div class="layui-input-inline">
+								<select class="user_type" name="cart" lay-filter="cart">
+									<option value="一方车">一方车</option>
+									<option value="三方车">三方车</option>
+									<option value="五方车">五方车</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_repass" class="layui-form-label">
+                    </label>
+							<div class="layui-btn userKey">
+								增加
+							</div>
+						</div>
+					</form>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+
+	</body>
+	<script>
+		$(function() {
+			var obj = {};
+			layui.use('form', function() {
+				form = layui.form;
+				console.log(layui)
+				form.on('select(aihao)', function(data) {
+					obj.type = data.value
+					if(data.value == '司机') {
+						$('#car').show();
+					} else {
+						$('#car').hide();
+					}
+				})
+				form.on('select(cart)', function(data) {
+					obj.cart = data.value
+				})
+			})
+
+			function inputText(name) {
+				$('.' + name).on('input', function(e) {
+					console.log(e)
+					obj[name] = e.detail.value || e.currentTarget.value;
+				})
+			}
+			inputText('username');
+			inputText('phone');
+			inputText('password');
+			inputText('surepassword')
+			layui.use('layer', function() {
+				var layer = layui.layer;
+				$('.userKey').click(function() {
+					//					console.log(layer)
+					//					layer.closeAll('iframe')
+					//console.log(parent.document.requestData())
+					if(obj.phone != '' && obj.phone) {
+						if(obj.username != '' && obj.username) {
+							if(obj.password != '' && obj.password) {
+								if(obj.password == obj.surepassword) {
+									if(obj.password.length >= 6 && obj.password.length <= 16) {
+										let objs = {};
+										let time = new Date().getTime()
+										objs.phone = obj.phone;
+										objs.username = obj.username;
+										//										objs.nickname = obj.username;
+										objs.password = obj.password;
+										//										objs.status = 1;
+										//										objs.created = time;
+										if(obj.type != '' && obj.type) {
+											objs.usertype = obj.type;
+										} else {
+											objs.usertype = '内部销售';
+										}
+										if(obj.type == '司机') {
+											if(obj.cart != '' && obj.cart) {
+												objs.cartype = obj.cart;
+											} else {
+												objs.cartype = '一方车';
+											}
+										}
+										//										objs.isvip = 1;
+										$.ajax({
+											type: "POST",
+											//											contentType: 'application/json;charset=UTF-8',
+											url: "http://192.168.0.101:9001/comUser/addComUser",
+											data: objs
+										}).then(res => {
+											layer.msg('添加成功');
+											setTimeout(function(){
+												var index = parent.layer.getFrameIndex(window.name);
+												parent.location.reload();
+												parent.layer.close(index);
+											},1500)
+										}).catch(err => {
+											console.log(err)
+										})
+									} else {
+										layer.msg('密码格式错误')
+									}
+								} else {
+									layer.msg('两次密码不一致')
+								}
+							} else {
+								layer.msg('请填写密码')
+							}
+						} else {
+							layer.msg('请填写真实名称')
+						}
+					} else {
+						layer.msg('请填写手机号')
+					}
+				})
+			})
+		})
+	</script>
+
+</html>

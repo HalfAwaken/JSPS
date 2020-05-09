@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>内部销售管理</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+
+	</head>
+	<style type="text/css">
+		.layui-table-cell {
+			height: auto;
+		}
+		
+		.order_msg {
+			display: flex;
+			/*align-items: center;*/
+			justify-content: space-around;
+			flex-direction: column;
+		}
+		
+		.order_msg>div {}
+		
+		.pro_item {
+			display: flex;
+			margin-bottom: 10px;
+		}
+		
+		.pro_item:first-child {
+			margin-top: 10px;
+		}
+		
+		.pro_item>img {
+			width: 80px;
+			height: 80px;
+			min-width: 80px;
+			flex: 9;
+		}
+		
+		.pro_item>div {
+			display: flex;
+			justify-content: space-around;
+			flex-direction: column;
+			margin-left: 20px;
+			flex: 1;
+		}
+		
+		.pro_total {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+		}
+		
+		.pro_status {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+		}
+		
+		.pay_method {
+			width: 100px;
+			height: 30px;
+			border: 1px solid #999;
+			text-align: center;
+			line-height: 30px;
+		}
+		
+		.coustomer_msg {
+			display: flex;
+			justify-content: space-around;
+			flex-direction: column;
+		}
+		
+		.transport_msg {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+		}
+		.layui-table-view{
+			width: calc(100% - 200px);
+		}
+		.items{
+			color: #999;
+			margin-right: 10px;
+			cursor: pointer;
+		}
+		.items.active{
+			color: white;
+		}
+	</style>
+
+	<body>
+		<!-- 顶部开始 -->
+		<div class="container">
+			<div class="logo">
+				<a href="index.html" style="color: white;">金莎配送</a>
+			</div>
+			<div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+			<ul class="layui-nav right" lay-filter="">
+				<li class="layui-nav-item">
+					<a href="javascript:;">admin</a>
+					<dl class="layui-nav-child">
+						<!-- 二级菜单 -->
+						<dd>
+							<a href="">个人信息</a>
+						</dd>
+						<dd>
+							<a href="">切换帐号</a>
+						</dd>
+						<dd>
+							<a href="login.html">退出</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="/">前台首页</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 顶部结束 -->
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 左侧菜单开始 -->
+			<div class="left-nav">
+				<div id="side-nav">
+					<ul id="nav">
+						<li class="list" current>
+							<a href="appmanager.html">
+								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe70b;</i> 用户管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="member-list.html">
+										<i class="iconfont">&#xe6a7;</i> 内部销售管理
+									</a>
+								</li>
+								<li>
+									<a href="member-del.html">
+										<i class="iconfont">&#xe6a7;</i> 司机管理
+									</a>
+								</li>
+								<li>
+									<a href="member-level.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工管理
+									</a>
+								</li>
+								<li>
+									<a href="member-kiss.html">
+										<i class="iconfont">&#xe6a7;</i> 外部销售管理
+									</a>
+								</li>
+								<li>
+									<a href="driverLeave.html">
+										<i class="iconfont">&#xe6a7;</i> 司机请假审核
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 商品管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="category.html">
+										<i class="iconfont">&#xe6a7;</i> 商品分类
+									</a>
+								</li>
+								<li>
+									<a href="product.html">
+										<i class="iconfont">&#xe6a7;</i> 商品列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 轮播管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="setBanner.html">
+										<i class="iconfont">&#xe6a7;</i> 轮播列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 订单管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu opened">
+								<li>
+									<a href="order.html">
+										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>
+								<li>
+									<a href="driverOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 司机订单
+									</a>
+								</li>
+								<li class="current">
+									<a href="hamalOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工订单
+									</a>
+								</li>
+								<li>
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 左侧菜单结束 -->
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<form class="layui-form xbs" action="">
+						<div class="layui-form-pane" style="text-align: left;">
+							<div class="layui-form-item" style="display: inline-block;">
+								<label class="layui-form-label xbs768">日期范围</label>
+								<div class="layui-input-inline xbs768">
+									<input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
+								</div>
+								<div class="layui-input-inline xbs768">
+									<input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="userphone" placeholder="请输入搬运工用户名" autocomplete="off" class="layui-input userphone">
+								</div>
+								<div class="layui-input-inline" style="width:80px">
+									<div class="layui-btn userphone"><i class="layui-icon">&#xe615;</i></div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<!--<xblock><button class="layui-btn" onclick="member_add('添加用户','member-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button></xblock>-->
+					<table id="userList" lay-filter="userList"></table>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		
+		<!-- 中部结束 -->
+		<!-- 底部开始 -->
+		<!--<div class="footer">
+			<div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved. 本后台系统由X前端框架提供前端技术支持</div>
+		</div>-->
+		<!-- 底部结束 -->
+		<!-- 背景切换开始 -->
+		<div class="bg-changer">
+			<div class="swiper-container changer-list">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img class="item" src="images/a.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/b.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/c.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/d.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/e.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/f.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/g.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/h.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/i.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/j.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/k.jpg" alt=""></div>
+					<div class="swiper-slide"><span class="reset">初始化</span></div>
+				</div>
+			</div>
+			<div class="bg-out"></div>
+			<div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+		</div>
+		<!-- 背景切换结束 -->
+		<!-- 页面动态效果 -->
+		<script src="js/datatype.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+				var userLists = [];
+				var typenum = 0;
+				$('.items').click(function(){
+					for(let i=0;i<$('.items').length;i++){
+						$('.items').eq(i).removeClass('active')
+					}
+					$('.items').eq($(this).index()).addClass('active')
+					typenum = $(this).index();
+					requestData(typenum)
+				})
+				//				window.requestData = requestData;
+				function requestData(typenum) {
+					$.ajax({
+						type: "get",
+						url: "http://192.168.0.100:9001/order/findAll"
+					}).then(res => {
+						console.log(res)
+						console.log(res.data)
+						let datas = res.data;
+						if(typenum==0){
+							let arr = [];
+							res.data.forEach(cur=>{
+								if(cur.status==8){
+									arr.push(cur)
+								}
+							})
+							datas = arr;
+						}else if(typenum==1){
+							let arr = [];
+							res.data.forEach(cur=>{
+								if(cur.status==1){
+									arr.push(cur)
+								}
+							})
+							datas = arr;
+						}else if(typenum==2){
+							let arr = [];
+							res.data.forEach(cur=>{
+								if(cur.status==2){
+									arr.push(cur)
+								}
+							})
+							datas = arr;
+						}else if(typenum==3){
+							let arr = [];
+							res.data.forEach(cur=>{
+								if(cur.status>2&&cur.status<8){
+									arr.push(cur)
+								}
+							})
+							datas = arr;
+						}else if(typenum==4){
+							let arr = [];
+							res.data.forEach(cur=>{
+								if(cur.status==8){
+									arr.push(cur)
+								}
+							})
+							datas = arr;
+						}
+						if(datas.length > 0) {
+							userLists = tableData(datas)
+						} else {
+							userLists = [];
+						}
+						layui.use('table', function() {
+							var table = layui.table;
+							table.reload('userList', {
+								data: userLists.filter(function(data, index) {
+									return data;
+								})
+							});
+						})
+						setTimeout(function() {
+							userOpreation()
+						}, 1000)
+					})
+				}
+				var productList;
+				$.ajax({
+					type:"get",
+					url:"http://192.168.0.100:9001/goods/findAll"
+				}).then(res=>{
+					console.log(res)
+					productList = res.data;
+				})
+				//表数据格式
+				function tableData(data) {
+					let arr = [];
+					$.each(data, function(index, ele) {
+						let dates = new Date(ele.createtime);
+						let obj = {};
+						let times = ele.postime.split("-");
+						let time1 = new Date(Number(times[0])).toLocaleString();
+						let time2 = new Date(Number(times[1])).toLocaleString();
+						let goods = JSON.parse(ele.goodsorder)
+						let goodArr = [];
+						$.each(productList, function(pIndex,pEle) {
+							$.each(goods, function(cIndex,cEle) {
+								if(pEle.id==cEle.id){
+									pEle.qty = cEle.qty;
+									goodArr.push(pEle)
+								}
+							});
+						});
+						var str = '';
+						goodArr.forEach(cur=>{
+							var strs = `<div class="pro_item">
+							<img src="${cur.goodimg}" />
+							<div>
+								<div class="pro_title">${cur.goodname}</div>
+								<div class="pro_spec">
+									<text>规格：${cur.goodspe}</text>
+									
+								</div>
+								<div><text>数量：${cur.qty}</text></div>
+							</div>
+						</div>`
+							str = str+strs
+						})
+						obj.ordermsg = `<div class="order_msg">
+										<div>订单：${ele.orderid}</div>
+										<div>下单人：${ele.receiver} ${ele.receivernum}</div>
+										<div>下单时间：${new Date(ele.createtime).toLocaleString()}</div>
+										<div>配送时间：${time1}-${time2}</div>
+									</div>`
+						obj.promsg = `<div class="product_msg">${str}</div>`
+						obj.pricemsg = `<div class="pro_total">
+						<div>商品合计：${ele.goodpay}元</div>
+						<div>运费合计：${ele.postpay}元</div>
+						<div>搬运费合计：${ele.carrypay}元</div>
+						<div>总金额：<span style="font-size: 18px;color: red;">${ele.payment}</span>元</div>
+					</div>`
+						if(ele.status==1){
+							obj.paymsg = `<div class="pro_status" style="color: red;">
+								未支付
+							</div>`
+						}else if(ele.status>1&&ele.status!=9){
+							obj.paymsg = `<div class="pro_status">
+								<div><span style="color: red;">${ele.payment}</span>元</div>
+								<div class="pay_method">微信支付</div>
+							</div>`
+						}else if(ele.status==9){
+							obj.paymsg = `<div class="pro_status" style="color: #999;">
+								已取消
+							</div>`
+						}
+						let drivermsg,carrymsg;
+						if(ele.driverid&&ele.driverid!=''){
+							$.ajax({
+								type:"post",
+								url:"http://192.168.0.100:9001/superUser/findComUserById",
+								data:{userid:ele.driverid},
+								async:false
+							}).then(user=>{
+								console.log(user)
+								drivermsg = user.data[0]
+							})
+						}
+						if(ele.carryid&&ele.carryid!=''){
+							$.ajax({
+								type:"post",
+								url:"http://192.168.0.100:9001/superUser/findComUserById",
+								data:{userid:ele.carryid},
+								async:false
+							}).then(user=>{
+								console.log(user)
+								carrymsg = user.data[0]
+							})
+						}
+						obj.customermsg = `<div class="coustomer_msg">
+						<div>客户信息 ${ele.receiver} ${ele.receivernum}</div>
+						<div>客户地址：${ele.receiveraddre}</div>
+					</div>`
+						obj.transport = `<div class="transport_msg">
+						<div>一方车1号车：陈啊啊 12345678901</div>
+						<div>搬运工：陈先生 12345678901</div>
+					</div>`
+						let driverStatus,carryStatus,matching;
+						if(ele.status==2||ele.status==1){
+							driverStatus = '未开始';
+							carryStatus = '未开始';
+							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;" data-orderid="${ele.orderid}" class="addCarry">${ele.carryid?"正在配送":"匹配搬运工"}</div>`
+						}else if(ele.status==4){
+							driverStatus = '配送中';
+							carryStatus = '未开始';
+							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;" data-orderid="${ele.orderid}" class="addCarry">${ele.carryid?"正在配送":"匹配搬运工"}</div>`
+						}else if(ele.status==5){
+							driverStatus = '已完成';
+							carryStatus = '未开始';
+							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;" data-orderid="${ele.orderid}" class="addCarry">${ele.carryid?"正在配送":"匹配搬运工"}</div>`
+						}else if(ele.status==6){
+							driverStatus = '已完成';
+							carryStatus = '未开始';
+							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;" data-orderid="${ele.orderid}" class="addCarry">${ele.carryid?"正在配送":"匹配搬运工"}</div>`
+						}else if(ele.status==7){
+							driverStatus = '已完成';
+							carryStatus = '搬运中';
+							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;">正在配送</div>`
+						}else if(ele.status==8){
+							driverStatus = '已完成';
+							carryStatus = '搬运完成';
+							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;">导出订单</div>`
+						}else if(ele.status==9){
+							driverStatus = '已取消';
+							carryStatus = '已取消';
+							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;">已取消</div>`
+						}
+						let driverimg = ele.driverimg?`<img src="${ele.driverimg}" class="driverimgs" />`:'';
+						let carrimg = ele.carrimg?`<img src="${ele.carrimg}" class="carrimgs" />`:'';
+						obj.status = `<div class="order_status">
+						<div>
+							<div>司机端：${driverStatus}</div>
+							${driverimg}
+						</div>
+						<div>
+							<div>搬运工端：${carryStatus}</div>
+							${carrimg}
+						</div>
+					</div>`
+						obj.operation = matching
+						arr.push(obj)
+					});
+					return arr;
+				}
+				function addCarry(){
+					member_add('选择搬运工','carryList.html','500','400')
+				}
+				function userOpreation() {
+					$('.addCarry').click(function(e){
+						console.log(e)
+						sessionStorage.setItem("nowOrderId",e.currentTarget.dataset.orderid)
+						addCarry();
+					})
+				}
+				let startTime,endTime,phone;
+				$('.userphone').on('input',function(e){
+					console.log(e)
+					phone = e.target.value;
+				})
+				console.log($('.findOrder'))
+				$('.findOrder').click(function(e){
+					console.log(e)
+					let searchObj = {};
+					if(startTime&&startTime!=''){
+						searchObj.startTime = startTime;
+						if(endTime&&endTime!=''){
+							searchObj.endTime = endTime;
+						}else{
+							layui.use('layer',function(){
+								layui.layer.msg('请输入结束时间')
+							})
+						}
+						
+					}else if(endTime&&endTime!=''){
+						searchObj.endTime = endTime;
+						layui.use('layer',function(){
+							layui.layer.msg('请输入起始时间')
+						})
+					}
+					if(phone&&phone!=''){
+						searchObj.phone = phone;
+					}
+					searchObj.usertype="搬运工"
+					console.log(searchObj)
+					$.ajax({
+						method:'post',
+						url:'http://192.168.0.100:9001/order/findByTimeOrPhone',
+						data:searchObj
+					}).then(res=>{
+						console.log(res)
+						let datas = res.data;
+						if(typenum == 0) {
+							let arr = [];
+							res.data.forEach(cur => {
+								if(cur.status == 8) {
+									arr.push(cur)
+								}
+							})
+							datas = arr;
+						} else if(typenum == 1) {
+							let arr = [];
+							res.data.forEach(cur => {
+								if(cur.status == 1) {
+									arr.push(cur)
+								}
+							})
+							datas = arr;
+						} else if(typenum == 2) {
+							let arr = [];
+							res.data.forEach(cur => {
+								if(cur.status == 2) {
+									arr.push(cur)
+								}
+							})
+							datas = arr;
+						} else if(typenum == 3) {
+							let arr = [];
+							res.data.forEach(cur => {
+								if(cur.status > 2 && cur.status < 8) {
+									arr.push(cur)
+								}
+							})
+							datas = arr;
+						} else if(typenum == 4) {
+							let arr = [];
+							res.data.forEach(cur => {
+								if(cur.status == 8) {
+									arr.push(cur)
+								}
+							})
+							datas = arr;
+						}
+						//						console.log(resdata)
+						//						let datas = JSON.parse(resdata)
+						//						console.log(datas)
+						comuserList = datas;
+						if(datas.length > 0) {
+							userLists = tableData(datas)
+						} else {
+							userLists = [];
+						}
+						layui.use('table', function() {
+							var table = layui.table;
+							table.reload('userList', {
+								data: userLists.filter(function(data, index) {
+									return data;
+								})
+							});
+						})
+						setTimeout(function() {
+							userOpreation()
+						}, 1000)
+					})
+				})
+				layui.use(['laydate', 'table'], function() {
+					var laydate = layui.laydate; //日期插件
+					var table = layui.table;
+					//以上模块根据需要引入
+					//
+					laydate.render({
+						elem: '#LAY_demorange_s',
+						done:function(value,date,endDate){
+							console.log(value)
+							startTime = value + ' 00:00:00'
+						}
+					});
+
+					laydate.render({
+						elem: '#LAY_demorange_e',
+						done:function(value,date,endDate){
+							console.log(value)
+							endTime = value + ' 00:00:00'
+						}
+					});
+					table.render({
+						elem: "#userList",
+						page: true,
+						height:$(window).innerHeight()*0.65,
+						cols: [
+							[{
+									field: 'ordermsg',
+									title: '订单信息'
+								},
+								{
+									field: 'promsg',
+									title: '商品信息'
+								},
+								{
+									field: 'pricemsg',
+									title: '价格信息'
+								},
+								{
+									field: 'paymsg',
+									title: '支付信息'
+								},
+								{
+									field: 'customermsg',
+									title: '客户信息'
+								},
+								{
+									field: 'transport',
+									title: '运输工人信息'
+								},
+								{
+									field: 'status',
+									title: '状态'
+								},
+								{
+									field: 'operation',
+									title: '操作'
+								}
+							]
+						],
+						data: userList,
+						done: function() {
+
+						}
+					})
+
+				});
+				setTimeout(function() {
+					requestData(typenum);
+				}, 500)
+			})
+
+			/*用户-添加*/
+			function member_add(title, url, w, h) {
+				x_admin_show(title, url, w, h);
+			}
+		</script>
+
+	</body>
+
+</html>
