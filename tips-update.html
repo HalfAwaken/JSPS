@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>内部销售增加</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+
+	</head>
+	<style type="text/css">
+		.wrapper .page-content {
+			width: 100%;
+		}
+		
+		input::-webkit-input-placeholder {
+			color: #808080 !important;
+		}
+		
+		.layui-unselect.layui-form-radio {
+			margin: 0 !important;
+		}
+	</style>
+
+	<body>
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content" style="min-height: 0;">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<form class="layui-form">
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red">*</span>地址名称
+                    </label>
+							<div class="layui-input-inline">
+								<input type="text" class="layui-input category_name address_name" name="address_name" placeholder="请输入地址名称">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>类型
+                    </label>
+							<div class="layui-input-inline" style="display: flex;align-items: center;">
+								<input type="radio" name="isstairs" lay-filter="isstairs" value="电梯" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									电梯
+								</div>
+								<input type="radio" name="isstairs" lay-filter="isstairs" value="楼梯" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									楼梯
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>平移距离
+                    </label>
+							<div class="layui-input-inline" style="display: flex;align-items: center;width: auto;">
+								<input type="radio" name="distance" lay-filter="distance" value="1m~20m" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									1m~20m
+								</div>
+								<input type="radio" name="distance" lay-filter="distance" value="20m~50m" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									20m~50m
+								</div>
+								<input type="radio" name="distance" lay-filter="distance" value="更多" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									更多
+								</div>
+								<input type="text" name="more_dis" class="layui-input category_name choice1" style="width: auto;display: none;" />
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>地下室是否限高
+                    </label>
+							<div class="layui-input-inline" style="display: flex;align-items: center;">
+								<input type="radio" name="ishigh" lay-filter="ishigh" value="是" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									是
+								</div>
+								<input type="text" name="more_high" class="layui-input category_name choice2" style="width: auto;display: none;" />
+								<input type="radio" name="ishigh" lay-filter="ishigh" value="否" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									否
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>小区是否能进散沙
+                    </label>
+							<div class="layui-input-inline" style="display: flex;align-items: center;">
+								<input type="radio" name="issand" value="是" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									是
+								</div>
+								<input type="radio" name="issand" value="否" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									否
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>小区是否存在楼霸
+                    </label>
+							<div class="layui-input-inline" style="display: flex;align-items: center;">
+								<input type="radio" name="isluoba" value="是" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									是
+								</div>
+								<input type="radio" name="isluoba" value="否" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									否
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>小区上货时间是否限制
+                    </label>
+							<div class="layui-input-inline" style="display: flex;align-items: center;width: auto;">
+								<input type="radio" name="istime" value="是" lay-filter="istime" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									是
+								</div>
+								<input type="text" name="more_time" class="layui-input category_name choice3" style="width: auto;display: none;" />
+								<input type="radio" name="istime" value="否" lay-filter="istime" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									否
+								</div>
+								
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>现场是否需要转运
+                    </label>
+							<div class="layui-input-inline" style="display: flex;align-items: center;width: auto;">
+								<input type="radio" name="iscost" lay-filter="iscost" value="是" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									是
+								</div>
+								<input type="text" name="more_cost" class="layui-input category_name choice4" style="width: auto;display: none;" />
+								<input type="radio" name="iscost" lay-filter="iscost" value="否" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									否
+								</div>
+								
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>小区保安是否需要公关费
+                    </label>
+							<div class="layui-input-inline" style="display: flex;align-items: center;">
+								<input type="radio" name="ismoney" value="是" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									是
+								</div>
+								<input type="radio" name="ismoney" value="否" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									否
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>卸货点到上楼点是否有坡/台阶
+                    </label>
+							<div class="layui-input-inline" style="display: flex;align-items: center;">
+								<input type="radio" name="isuphill" value="是" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									是
+								</div>
+								<input type="radio" name="isuphill" value="否" class="layui-input category_name" style="margin: 0;" />
+								<div class="layui-form-mid layui-word-aux">
+									否
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>现场特殊情况备注
+                    </label>
+							<div class="layui-input-inline">
+								<textarea class="address_info" name="address_info" style="width: 300px;height: 150px;padding: 10px;" placeholder="请输入地址描述"></textarea>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_repass" class="layui-form-label">
+                    </label>
+							<button class="layui-btn category_add" lay-filter="submit" lay-submit="">
+								修改
+							</button>
+						</div>
+					</form>
+					<!-- 右侧内容框架，更改从这里结束 -->
+					<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+
+	</body>
+	<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(function() {
+			let addressType = sessionStorage.getItem("addressType");
+			var tipsData = JSON.parse(sessionStorage.getItem("tipsData"));
+			if(sessionStorage.getItem('token')!='true'){
+				location.href = './index.html';
+			}
+			console.log(tipsData)
+			$('.address_name').val(tipsData.titles)
+			$("input[name='isstairs'][value="+tipsData.isstairs+"]").attr("checked",true);
+			if(tipsData.distance!="1m~20m"&&tipsData.distance!="20m~50m"){
+				$("input[name='distance'][value=更多]").attr("checked",true);
+				$(".choice1").show();
+				$(".choice1").val(tipsData.distance)
+			}else{
+				$("input[name='distance'][value="+tipsData.distance+"]").attr("checked",true);
+			}
+			if(tipsData.ishigh=="否"){
+				$("input[name='ishigh'][value="+tipsData.ishigh+"]").attr("checked",true);
+			}else{
+				$("input[name='ishigh'][value=是]").attr("checked",true);
+				$(".choice2").show();
+				$('.choice2').val(tipsData.ishigh);
+			}
+			$("input[name='issand'][value="+tipsData.issand+"]").attr("checked",true);
+			$("input[name='isluoba'][value="+tipsData.isluoba+"]").attr("checked",true);
+			if(tipsData.istime=="否"){
+				$("input[name='istime'][value="+tipsData.istime+"]").attr("checked",true);
+			}else{
+				$("input[name='istime'][value=是]").attr("checked",true);
+				$(".choice3").show();
+				$('.choice3').val(tipsData.istime);
+			}
+			if(tipsData.iscost=="否"){
+				$("input[name='iscost'][value="+tipsData.iscost+"]").attr("checked",true);
+			}else{
+				$("input[name='iscost'][value=是]").attr("checked",true);
+				$(".choice4").show();
+				$('.choice4').val(tipsData.iscost);
+			}
+			$("input[name='ismoney'][value="+tipsData.ismoney+"]").attr("checked",true);
+			$("input[name='isuphill'][value="+tipsData.isuphill+"]").attr("checked",true);
+			$('.address_info').val(tipsData.comment);
+			layui.use(['form','layer'],function(){
+				var layer = layui.layer;
+				var form = layui.form;
+				form.on('radio(distance)',function(data){
+					console.log(data)
+					if(data.value=="更多"){
+						$('.choice1').show()
+					}else{
+						$('.choice1').hide()
+					}
+				})
+				form.on('radio(ishigh)',function(data){
+					console.log(data)
+					if(data.value=="是"){
+						$('.choice2').show()
+					}else{
+						$('.choice2').hide()
+					}
+				})
+				form.on('radio(istime)',function(data){
+					console.log(data)
+					if(data.value=="是"){
+						$('.choice3').show()
+					}else{
+						$('.choice3').hide()
+					}
+				})
+				form.on('radio(iscost)',function(data){
+					console.log(data)
+					if(data.value=="是"){
+						$('.choice4').show()
+					}else{
+						$('.choice4').hide()
+					}
+				})
+				form.on('submit(submit)',function(data){
+					console.log(data);
+					let obj = tipsData;
+					if(data.field.distance){
+						if(data.field.distance=="更多"){
+							if(data.field.more_dis&&data.field.more_dis!=''){
+								obj.distance = data.field.more_dis;
+							}else{
+								layer.msg("请填写平移距离");
+								return false;
+							}
+						}else{
+							obj.distance = data.field.distance;
+						}
+					}
+					if(data.field.isstairs){
+						obj.isstairs = data.field.isstairs;
+					}
+					if(data.field.ishigh){
+						if(data.field.ishigh=="是"){
+							if(data.field.more_high&&data.field.more_high!=''){
+								obj.ishigh = data.field.more_high;
+							}else{
+								layer.msg("请填写地下室限高");
+								return false;
+							}
+						}else{
+							obj.ishigh = data.field.ishigh;
+						}
+					}
+					if(data.field.issand){
+						obj.issand = data.field.issand;
+					}
+					if(data.field.isluoba){
+						obj.isluoba = data.field.isluoba;
+					}
+					if(data.field.istime){
+						if(data.field.istime=="是"){
+							if(data.field.more_time&&data.field.more_time!=''){
+								obj.istime = data.field.more_time;
+							}else{
+								layer.msg("请填写上货时间限制");
+								return false;
+							}
+						}else{
+							obj.istime = data.field.istime;
+						}
+					}
+					if(data.field.iscost){
+						if(data.field.iscost=="是"){
+							if(data.field.more_cost&&data.field.more_cost!=''){
+								obj.iscost = data.field.more_cost;
+							}else{
+								layer.msg("请填写上货时间限制");
+								return false;
+							}
+						}else{
+							obj.iscost = data.field.iscost;
+						}
+					}
+					if(data.field.ismoney){
+						obj.ismoney = data.field.ismoney;
+					}
+					if(data.field.isuphill){
+						obj.isuphill = data.field.isuphill;
+					}
+					if(data.field.address_name){
+						obj.titles = data.field.address_name;
+					}else{
+						layer.msg("请填写地址名称");
+						return false;
+					}
+					if(data.field.address_info){
+						obj.comment = data.field.address_info;
+					}
+					obj.addressType = addressType;
+					$.ajax({
+						type: "post",
+						url: "http://js.jinshapeison.com/superUser/addComments",
+						contentType:"application/json; charset=UTF-8",
+						//							url:"http://192.168.0.101:9002/superUser/addComments",
+						data: JSON.stringify(obj)
+					}).then(res => {
+						if(res.code == 0) {
+							layui.use('layer', function() {
+								var layer = layui.layer;
+								layer.msg('修改成功');
+								setTimeout(function() {
+									var index = parent.layer.getFrameIndex(window.name);
+									parent.location.reload();
+									parent.layer.close(index);
+								}, 1500)
+							})
+						} else {
+							layui.layer.msg('添加失败，请联系管理员或重试');
+						}
+
+					})
+					return false;
+				})
+			})
+		})
+	</script>
+
+</html>

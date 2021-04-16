@@ -146,7 +146,7 @@ $(function () {
     w       弹出层宽度（缺省调默认值）
     h       弹出层高度（缺省调默认值）
 */
-function x_admin_show(title,url,w,h){
+function x_admin_show(title,url,w,h,callback){
     if (title == null || title == '') {
         title=false;
     };
@@ -159,6 +159,9 @@ function x_admin_show(title,url,w,h){
     if (h == null || h == '') {
         h=($(window).height() - 50);
     };
+//  if(ind||ind==0){
+//  	inds = ind;
+//  }
     layer.open({
         type: 2,
         area: [w+'px', h +'px'],
@@ -167,7 +170,13 @@ function x_admin_show(title,url,w,h){
         shadeClose: true,
         shade:0.4,
         title: title,
-        content: url
+        content: url,
+        cancel: function(){
+        	if(callback){
+        		callback()
+        	}
+        	
+        }
     });
 }
 

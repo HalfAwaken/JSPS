@@ -18,7 +18,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     color: #ffffff;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
 }
 /*layer弹出层背景设置*/
 
@@ -282,14 +282,14 @@ body{
 }
 /*主体*/
 .wrapper{
-	display: table;
+	display: flex;
 	position: relative;
 	width: 100%;
 }
 .wrapper .left-nav{
 	background-color: rgba(0, 0, 0, 0.20);
     color: #FFF;
-    display: table-cell;
+    /*display: table-cell;*/
     float: none!important;
     vertical-align: top;
     max-width: 250px;
@@ -349,7 +349,7 @@ body{
     float: none!important;
     word-wrap:break-word;
     word-break:break-all;
-
+	width: calc(100% - 350px);
 }
 .wrapper .page-content .content{
 	min-height: 500px;

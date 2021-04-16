@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>内部销售增加</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+
+	</head>
+	<style type="text/css">
+		.wrapper .page-content{width: 100%;}
+		.layui-input-inline{
+			padding: 9px 0;
+		}
+		.layui-form-label{
+			width: auto !important;
+		}
+		.layui-form-item .layui-input-inline{width: auto !important;}
+	</style>
+	<body>
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content" style="min-height: 0;">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<form class="layui-form">
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>订单编号
+                    </label>
+							<div class="layui-input-inline orderids">
+								无
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>发货时间
+                    </label>
+							<div class="layui-input-inline times">
+								无
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>搬运方式
+                    </label>
+							<div class="layui-input-inline layerType">
+								无
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>搬运层数
+                    </label>
+							<div class="layui-input-inline layerNum">
+								无
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>地址
+                    </label>
+							<div class="layui-input-inline address">
+								无
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>当前订单已选择方数
+                    </label>
+							<div class="layui-input-inline square">
+								无
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>注意事项
+                    </label>
+							<div class="layui-input-inline attend">
+								无
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red"></span>备注
+                    </label>
+							<div class="layui-input-inline comment">
+								无
+							</div>
+						</div>
+					</form>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+
+	</body>
+	<script src="js/datatype.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(function() {
+			if(sessionStorage.getItem('token')!='true'){
+				location.href = './index.html';
+			}
+			let addressType = sessionStorage.getItem("addressType");
+			console.log(location.href)
+			let id = location.href.split("&")[0].split("=")[1];
+			let deliveryTime = location.href.split("&")[1].split("=")[1];
+			var carryid;
+			$.ajax({
+				type:"get",
+				url:"http://js.jinshapeison.com/secondController/findSecondOrderInfo",
+//				url:"http://192.168.0.105:9002/secondController/findSecondOrderInfo",
+				data:{orderId:id}
+			}).then(res=>{
+				console.log(res)
+				let data = res.data;
+				$('.orderids').html(data.order_id);
+				$('.times').html(data.delivery_time);
+				let shopList = JSON.parse(data.goods_list);
+				let strs = ``;
+				for(let i=0;i<shopList.length;i++){
+					strs = strs + `<div class="layui-form-item">
+								<label class="layui-form-label">
+	                        <span class="x-red"></span>${shopList[i].goodsName}
+	                    </label>
+								<div class="layui-input-inline">
+									${shopList[i].qty}  ${shopList[i].goodspe}
+								</div>
+							</div>`
+				}
+				$('.shop').html(strs);
+				$('.address').html(data.receiver_address);
+				$('.square').html(data.goods_size);
+				$('.layerType').html(data.worker_type==1?'楼梯':'电梯');
+				$('.layerNum').html(data.worker_num+'层')
+				if(data.attention==-1){
+					$('.attend').html("无")
+				}else{
+					if(data.attention.indexOf(",")!=-1){
+						let arrs = data.attention.split(",");
+						let attentionStr = "";
+						arrs.forEach(cur=>{
+							if(cur==1){
+								attentionStr = attentionStr + "限高,"
+							}else if(cur==2){
+								attentionStr = attentionStr + "物业备案,"
+							}else if(cur==3){
+								attentionStr = attentionStr + "地下室,"
+							}else if(cur==4){
+								attentionStr = attentionStr + "卸散沙,"
+							}
+						})
+						attentionStr = attentionStr.substring(0,attentionStr.length-1);
+						$('.attend').html(attentionStr)
+					}else{
+						if(data.attention==1){
+							$('.attend').html("限高")
+						}else if(data.attention==2){
+							$('.attend').html("物业备案")
+						}else if(data.attention==3){
+							$('.attend').html("地下室")
+						}else if(data.attention==4){
+							$('.attend').html("卸散沙")
+						}
+					}
+				}
+				if(data.comment){
+					$('.comment').html(data.comment);
+				}
+				
+			})
+		})
+	</script>
+
+</html>

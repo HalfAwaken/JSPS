@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>充值</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+
+	</head>
+	<style type="text/css">
+		.wrapper .page-content {
+			width: 100%;
+		}
+	</style>
+
+	<body>
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content" style="min-height: 0;">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<form class="layui-form">
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+                        <span class="x-red">*</span>充值金额
+                    </label>
+							<div class="layui-input-inline">
+								<input type="text" class="layui-input category_name">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_repass" class="layui-form-label">
+                    </label>
+							<div class="layui-btn category_add">
+								确定充值
+							</div>
+						</div>
+					</form>
+					<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+
+	</body>
+	<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(function() {
+			if(sessionStorage.getItem('token') != 'true') {
+				location.href = './index.html';
+			}
+			console.log(location.href)
+			let userIds = location.href.split("?id=")[1];
+			let addressType = sessionStorage.getItem("addressType");
+			var obj = {};
+			$('.category_name').on('input', function(e) {
+				obj.money = e.target.value;
+			})
+			$('.category_add').click(function() {
+				if(obj.money != '' && obj.money) {
+					obj.userId = userIds;
+					$.ajax({
+						type: "post",
+						url: "http://js.jinshapeison.com/secondController/secondRecharge",
+//						url:"http://192.168.0.108:9002/secondController/secondRecharge",
+						data: obj
+					}).then(res => {
+						if(res.code == 0) {
+							layui.use('layer', function() {
+								var layer = layui.layer;
+								layer.msg('充值成功');
+								setTimeout(function() {
+									var index = parent.layer.getFrameIndex(window.name);
+									parent.location.reload();
+									parent.layer.close(index);
+								}, 1500)
+							})
+						} else {
+							layui.layer.msg('添加失败，请联系管理员或重试');
+						}
+
+					})
+				}
+			})
+		})
+	</script>
+
+</html>

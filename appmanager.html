@@ -46,13 +46,13 @@
 						<dd>
 							<a href="">切换帐号</a>
 						</dd>
-						<dd>
-							<a href="login.html">退出</a>
+						<dd class="exit">
+							<a href="index.html">退出</a>
 						</dd>
 					</dl>
 				</li>
 				<li class="layui-nav-item">
-					<a href="/">前台首页</a>
+					<a href="appmanager.html">前台首页</a>
 				</li>
 			</ul>
 		</div>
@@ -66,6 +66,24 @@
 						<li class="list" current>
 							<a href="appmanager.html">
 								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="car_manager.html">
+								<i class="iconfont">&#xe761;</i> 车辆管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="tips.html">
+								<i class="iconfont">&#xe761;</i> 温馨提示
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="examine.html">
+								<i class="iconfont">&#xe761;</i> 注册管理
 								<i class="iconfont nav_right">&#xe697;</i>
 							</a>
 						</li>
@@ -90,16 +108,16 @@
 										<i class="iconfont">&#xe6a7;</i> 搬运工管理
 									</a>
 								</li>
-								<li>
+								<!--<li>
 									<a href="member-kiss.html">
 										<i class="iconfont">&#xe6a7;</i> 外部销售管理
 									</a>
-								</li>
-								<li>
+								</li>-->
+								<!--<li>
 									<a href="driverLeave.html">
 										<i class="iconfont">&#xe6a7;</i> 司机请假审核
 									</a>
-								</li>
+								</li>-->
 							</ul>
 						</li>
 						<li class="list">
@@ -139,9 +157,14 @@
 								<i class="iconfont nav_right">&#xe697;</i>
 							</a>
 							<ul class="sub-menu" style="display:none">
-								<li>
+								<!--<li>
 									<a href="order.html">
 										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>-->
+								<li>
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
 									</a>
 								</li>
 								<li>
@@ -154,12 +177,26 @@
 										<i class="iconfont">&#xe6a7;</i> 搬运工订单
 									</a>
 								</li>
-								<li>
-									<a href="saleOrder.html">
-										<i class="iconfont">&#xe6a7;</i> 销售订单
-									</a>
-								</li>
+								
 							</ul>
+						</li>
+						<li class="list">
+							<a href="order.html">
+								<i class="iconfont">&#xe761;</i> 调班系统
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="allOrder.html">
+								<i class="iconfont">&#xe761;</i> 调班系统新
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="proHis.html">
+								<i class="iconfont">&#xe761;</i> 销售统计
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -265,7 +302,8 @@
 							<div class="layui-btn submit">保存</div>
 						</div>
 					</form>
-
+					<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
 					<!-- 右侧内容框架，更改从这里结束 -->
 				</div>
 			</div>
@@ -297,23 +335,41 @@
 			</div>
 			<div class="bg-out"></div>
 			<div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+			
 		</div>
 		<!-- 背景切换结束 -->
 
 	</body>
+	<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		$(function() {
+			if(sessionStorage.getItem('token')!='true'){
+				location.href = './index.html';
+			}
+			$('.exit').click(function(){
+				sessionStorage.setItem("token",'false')
+			})
+			let addressType = sessionStorage.getItem("addressType");
+			console.log($('title'))
+			if(addressType==1){
+				$('title').html("金莎配送天河区");
+				$('.logo a').html("金莎配送天河区");
+			}else{
+				$("title").html("金莎配送白云区");
+				$(".logo a").html("金莎配送白云区");
+			}
 			var objs = {};
 			$.ajax({
 				type: "get",
-				url: "http://192.168.0.100/appManage/findAll"
+				url: "http://js.jinshapeison.com/appManage/findAll?addressType="+addressType
+//				url: "http://192.168.0.102:9002/appManage/findAll?addressType="+addressType
 			}).then(res => {
-				console.log(res)
+//				console.log(res)
 				let data = res.data[0]
 				$('.appname').val(data.appname);
 				$('.discount').val(data.discount);
 				$('.addre').val(data.addre);
-				$('.points').val(data.points);
+				$('.points').val(data.applng+','+data.applat);
 				$('.scope').val(data.scope);
 				$('.cartypeone').val(data.onecart);
 				$('.cartypetwo').val(data.three);
@@ -351,6 +407,8 @@
 			$('.points').on('input', function(e) {
 				obj.appmanage.points = e.detail.value || e.target.value;
 				objs.points = e.target.value;
+				objs.applat = e.target.value.split(',')[1];
+				objs.applng = e.target.value.split(',')[0];
 			})
 			$('.cartype').on('input', function(e) {
 				let k = {};
@@ -410,7 +468,8 @@
 				if(typeof(obj.driver) != 'string') {
 					obj.driver = JSON.stringify(obj.driver);
 				}
-				console.log(objs)
+				objs.addressType = addressType;
+//				console.log(objs)
 				layui.use('layer', function() {
 					var layer = layui.layer;
 					layer.confirm('确定要修改吗?', {
@@ -420,10 +479,11 @@
 							layer.close(index)
 							$.ajax({
 								method: 'post',
-								url: 'http://192.168.0.100/appManage/updateApp',
+								url: 'http://js.jinshapeison.com/appManage/updateApp',
+//								url: 'http://192.168.0.100:9002/appManage/updateApp',
 								data: objs
 							}).then(res => {
-								console.log(res)
+//								console.log(res)
 								if(res.code == 0) {
 									layer.msg('修改成功')
 								}

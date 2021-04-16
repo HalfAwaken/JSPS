@@ -15,7 +15,9 @@
 		<script type="text/javascript" src="js/xadmin.js"></script>
 
 	</head>
-
+	<style type="text/css">
+		.wrapper .page-content{width: 100%;}
+	</style>
 	<body>
 		<!-- 中部开始 -->
 		<div class="wrapper">
@@ -95,6 +97,8 @@
 							</div>
 						</div>
 					</form>
+					<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
 					<!-- 右侧内容框架，更改从这里结束 -->
 				</div>
 			</div>
@@ -103,12 +107,17 @@
 		<!-- 中部结束 -->
 
 	</body>
+	<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 		$(function() {
+			if(sessionStorage.getItem('token')!='true'){
+				location.href = './index.html';
+			}
+			
 			var obj = {};
 			layui.use('form', function() {
 				form = layui.form;
-				console.log(layui)
+//				console.log(layui)
 				form.on('select(aihao)', function(data) {
 					obj.type = data.value
 					if(data.value == '司机') {
@@ -117,6 +126,7 @@
 						$('#car').hide();
 					}
 				})
+				form.render('select');
 				form.on('select(cart)', function(data) {
 					obj.cart = data.value
 				})
@@ -124,7 +134,7 @@
 
 			function inputText(name) {
 				$('.' + name).on('input', function(e) {
-					console.log(e)
+//					console.log(e)
 					obj[name] = e.detail.value || e.currentTarget.value;
 				})
 			}
@@ -167,7 +177,7 @@
 										$.ajax({
 											type: "POST",
 											//											contentType: 'application/json;charset=UTF-8',
-											url: "http://192.168.0.100/comUser/addComUser",
+											url: "http://js.jinshapeison.com/comUser/addComUser",
 											data: objs
 										}).then(res => {
 											layer.msg('添加成功');
@@ -177,7 +187,7 @@
 												parent.layer.close(index);
 											},1500)
 										}).catch(err => {
-											console.log(err)
+//											console.log(err)
 										})
 									} else {
 										layer.msg('密码格式错误')

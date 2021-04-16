@@ -38,8 +38,8 @@
 						<dd>
 							<a href="">切换帐号</a>
 						</dd>
-						<dd>
-							<a href="login.html">退出</a>
+						<dd class="exit">
+							<a href="index.html">退出</a>
 						</dd>
 					</dl>
 				</li>
@@ -58,6 +58,24 @@
 						<li class="list" current>
 							<a href="appmanager.html">
 								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="car_manager.html">
+								<i class="iconfont">&#xe761;</i> 车辆管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="tips.html">
+								<i class="iconfont">&#xe761;</i> 温馨提示
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="examine.html">
+								<i class="iconfont">&#xe761;</i> 注册管理
 								<i class="iconfont nav_right">&#xe697;</i>
 							</a>
 						</li>
@@ -82,16 +100,16 @@
 										<i class="iconfont">&#xe6a7;</i> 搬运工管理
 									</a>
 								</li>
-								<li>
+								<!--<li>
 									<a href="member-kiss.html">
 										<i class="iconfont">&#xe6a7;</i> 外部销售管理
 									</a>
-								</li>
-								<li>
+								</li>-->
+								<!--<li>
 									<a href="driverLeave.html">
 										<i class="iconfont">&#xe6a7;</i> 司机请假审核
 									</a>
-								</li>
+								</li>-->
 							</ul>
 						</li>
 						<li class="list">
@@ -131,9 +149,14 @@
 								<i class="iconfont nav_right">&#xe697;</i>
 							</a>
 							<ul class="sub-menu" style="display:none">
-								<li>
+								<!--<li>
 									<a href="order.html">
 										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>-->
+								<li>
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
 									</a>
 								</li>
 								<li>
@@ -146,15 +169,31 @@
 										<i class="iconfont">&#xe6a7;</i> 搬运工订单
 									</a>
 								</li>
-								<li>
-									<a href="saleOrder.html">
-										<i class="iconfont">&#xe6a7;</i> 销售订单
-									</a>
-								</li>
+								
 							</ul>
+						</li>
+						<li class="list">
+							<a href="order.html">
+								<i class="iconfont">&#xe761;</i> 调班系统
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="allOrder.html">
+								<i class="iconfont">&#xe761;</i> 调班系统新
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="proHis.html">
+								<i class="iconfont">&#xe761;</i> 销售统计
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
 						</li>
 					</ul>
 				</div>
+				<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
 			</div>
 			<!-- 左侧菜单结束 -->
 			<!-- 右侧主体开始 -->
@@ -218,16 +257,31 @@
 		<!-- 背景切换结束 -->
 		<!-- 页面动态效果 -->
 		<script src="js/datatype.js" type="application/javascript"></script>
+		<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			$(function() {
+				if(sessionStorage.getItem('token')!='true'){
+					location.href = './index.html';
+				}
+				$('.exit').click(function(){
+					sessionStorage.setItem("token",'false')
+				})
+				let addressType = sessionStorage.getItem("addressType");
 				var userLists = [];
 				var dataList;
+				if(addressType==1){
+					$('title').html("金莎配送天河区");
+					$('.logo a').html("金莎配送天河区");
+				}else{
+					$("title").html("金莎配送白云区");
+					$(".logo a").html("金莎配送白云区");
+				}
 				function requestData() {
 					$.ajax({
 						type: "get",
-						url: "http://192.168.0.100:9001/superUser/findAll"
+						url: "http://js.jinshapeison.com/superUser/findAll?addressType="+addressType
 					}).then(res => {
-						console.log(res)
+//						console.log(res)
 						let datas = res.data;
 						dataList = res.data;
 						if(datas.length > 0) {
@@ -253,28 +307,29 @@
 					let arr = [];
 					$.each(data, function(index, ele) {
 						let obj = {};
-						console.log(ele, index)
+//						console.log(ele, index)
 						obj.imgpath = '<img src="'+ele.imgpath+'" style="width: 200px;max-width: 200px;" />';
 						obj.status = ele.status==0?'否':'是';
 						obj.operation = "<div><span style='color: #76EE00;' class='update' data-id='"+ele.id+"' data-index='"+index+"'>修改</span> | <span style='color: #999;' class='del' data-index='"+index+"' data-id='" + ele.id + "'>删除</span></div>"
 						arr.push(obj)
-						console.log(obj)
+//						console.log(obj)
 					});
 					return arr;
 				}
 
 				function userOpreation() {
-					$('.update').click(function(e) {
+					$('.update').off().on('click',function(e) {
 						sessionStorage.setItem("bannerList",JSON.stringify(dataList[e.currentTarget.dataset.index]))
 						member_add('修改轮播图','banner-update.html','600','500')
 					})
-					$('.del').click(function(e) {
+					$('.del').off().on('click',function(e) {
 						let id = dataList[e.currentTarget.dataset.index].id;
 						$.ajax({
 							type: "post",
-							url: "http://192.168.0.100:9001/superUser/deleteImg",
+							url: "http://js.jinshapeison.com/superUser/deleteImg",
 							data: {
-								id: id
+								id: id,
+								addressType
 							}
 						}).then(res => {
 							if(res.code==0){
@@ -318,7 +373,7 @@
 						],
 						data: userList,
 						done: function() {
-
+							userOpreation()
 						}
 					})
 

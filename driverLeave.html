@@ -38,8 +38,8 @@
 						<dd>
 							<a href="">切换帐号</a>
 						</dd>
-						<dd>
-							<a href="login.html">退出</a>
+						<dd class="exit">
+							<a href="index.html">退出</a>
 						</dd>
 					</dl>
 				</li>
@@ -58,6 +58,24 @@
 						<li class="list" current>
 							<a href="appmanager.html">
 								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="car_manager.html">
+								<i class="iconfont">&#xe761;</i> 车辆管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="tips.html">
+								<i class="iconfont">&#xe761;</i> 温馨提示
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="examine.html">
+								<i class="iconfont">&#xe761;</i> 注册管理
 								<i class="iconfont nav_right">&#xe697;</i>
 							</a>
 						</li>
@@ -82,16 +100,16 @@
 										<i class="iconfont">&#xe6a7;</i> 搬运工管理
 									</a>
 								</li>
-								<li>
+								<!--<li>
 									<a href="member-kiss.html">
 										<i class="iconfont">&#xe6a7;</i> 外部销售管理
 									</a>
-								</li>
-								<li class="current">
+								</li>-->
+								<!--<li class="current">
 									<a href="driverLeave.html">
 										<i class="iconfont">&#xe6a7;</i> 司机请假审核
 									</a>
-								</li>
+								</li>-->
 							</ul>
 						</li>
 						<li class="list">
@@ -131,9 +149,14 @@
 								<i class="iconfont nav_right">&#xe697;</i>
 							</a>
 							<ul class="sub-menu" style="display:none">
-								<li>
+								<!--<li>
 									<a href="order.html">
 										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>-->
+								<li>
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
 									</a>
 								</li>
 								<li>
@@ -146,12 +169,26 @@
 										<i class="iconfont">&#xe6a7;</i> 搬运工订单
 									</a>
 								</li>
-								<li>
-									<a href="saleOrder.html">
-										<i class="iconfont">&#xe6a7;</i> 销售订单
-									</a>
-								</li>
+								
 							</ul>
+						</li>
+						<li class="list">
+							<a href="order.html">
+								<i class="iconfont">&#xe761;</i> 调班系统
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="allOrder.html">
+								<i class="iconfont">&#xe761;</i> 调班系统新
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="proHis.html">
+								<i class="iconfont">&#xe761;</i> 销售统计
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -220,16 +257,22 @@
 		<script src="js/datatype.js" type="application/javascript"></script>
 		<script>
 			$(function() {
+				if(sessionStorage.getItem('token')!='true'){
+					location.href = './index.html';
+				}
+				$('.exit').click(function(){
+					sessionStorage.setItem("token",'false')
+				})
 				var userLists = [];
 				var dataList;
 				var dataLists = [];
 				function requestData() {
 					$.ajax({
 						type: "get",
-						url: "http://192.168.0.100:9001/comUser/findAll",
+						url: "http://js.jinshapeison.com/comUser/findAll",
 						data:{usertype:'司机'}
 					}).then(res => {
-						console.log(res)
+//						console.log(res)
 						let datas = getRealJsonData(res.data)
 						dataList = getRealJsonData(res.data);
 						if(datas.length > 0) {
@@ -276,10 +319,10 @@
 					$('.sure').click(function(e) {
 						$.ajax({
 							type:"post",
-							url:"http://192.168.0.100:9001/superUser/updateDriverAsk",
+							url:"http://js.jinshapeison.com/superUser/updateDriverAsk",
 							data:{userid:dataList[e.currentTarget.dataset.index].userid,isask:'1',leavetime:dataList[e.currentTarget.dataset.index].leavetime}
 						}).then(res=>{
-							console.log(res)
+//							console.log(res)
 							if(res.code==0){
 								requestData()
 								layui.use('layer',function(){
@@ -289,13 +332,13 @@
 						})
 					})
 					$('.cancel').click(function(e) {
-						console.log(dataList)
+//						console.log(dataList)
 						$.ajax({
 							type:"post",
-							url:"http://192.168.0.100:9001/superUser/updateDriverAsk",
+							url:"http://js.jinshapeison.com/superUser/updateDriverAsk",
 							data:{userid:dataList[e.currentTarget.dataset.index].userid,leavetime:'',isask:'0'}
 						}).then(res=>{
-							console.log(res)
+//							console.log(res)
 							if(res.code==0){
 								requestData()
 								layui.use('layer',function(){
@@ -345,7 +388,7 @@
 						],
 						data: userList,
 						done: function() {
-
+							userOpreation()
 						}
 					})
 

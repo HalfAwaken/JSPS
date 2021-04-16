@@ -15,7 +15,9 @@
 		<script type="text/javascript" src="js/xadmin.js"></script>
 
 	</head>
-
+	<style type="text/css">
+		.wrapper .page-content{width: 100%;}
+	</style>
 	<body>
 		<!-- 中部开始 -->
 		<div class="wrapper">
@@ -52,6 +54,8 @@
 							</div>
 						</div>
 					</form>
+					<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
 					<!-- 右侧内容框架，更改从这里结束 -->
 				</div>
 			</div>
@@ -61,28 +65,34 @@
 
 	</body>
 	<script src="js/datatype.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 		$(function() {
+			if(sessionStorage.getItem('token')!='true'){
+				location.href = './index.html';
+			}
+			let addressType = sessionStorage.getItem("addressType");
 			let obj = {};
 			layui.use(['upload','form'],function(){
-				console.log(layui)
+//				console.log(layui)
 				var upload = layui.upload;
 				var form = layui.form;
 				upload.render({
 					elem:"#loadImg",
-					url:'http://192.168.0.100:9001/order/uploadImg',
+					url:'http://js.jinshapeison.com/order/uploadImg',
 					multiple: true,
 					before: function (obj) {
 		                obj.preview(function(index, file, result){
-		                	console.log(index,file)
+//		                	console.log(index,file)
 						 //图片链接（base64）
 					  });
 		            },
 					done:function(res){
-						console.log(res)
+//						console.log(res)
 						$('.choiceImg').attr("src",res.data)
 					}
 				})
+				form.render('select');
 				form.on('select(online)',function(data){
 					obj.isonline = Number(data.value);
 				})
@@ -94,10 +104,10 @@
 			$('.addPro').click(function(){
 				$.ajax({
 					type:"post",
-					url:"http://192.168.0.100:9001/superUser/addImg",
-					data:{imgPath:$('.choiceImg').attr("src"),status:obj.isonline}
+					url:"http://js.jinshapeison.com/superUser/addImg",
+					data:{imgPath:$('.choiceImg').attr("src"),status:obj.isonline,addressType}
 				}).then(res=>{
-					console.log(res)
+//					console.log(res)
 					if(res.code==0){
 						layui.use('layer',function(){
 							layer.msg('添加成功');

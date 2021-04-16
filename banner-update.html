@@ -15,7 +15,9 @@
 		<script type="text/javascript" src="js/xadmin.js"></script>
 
 	</head>
-
+	<style type="text/css">
+		.wrapper .page-content{width: 100%;}
+	</style>
 	<body>
 		<!-- 中部开始 -->
 		<div class="wrapper">
@@ -55,36 +57,44 @@
 					<!-- 右侧内容框架，更改从这里结束 -->
 				</div>
 			</div>
+			<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
 			<!-- 右侧主体结束 -->
 		</div>
 		<!-- 中部结束 -->
 
 	</body>
 	<script src="js/datatype.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 		$(function() {
+			if(sessionStorage.getItem('token')!='true'){
+				location.href = './index.html';
+			}
+			let addressType = sessionStorage.getItem("addressType");
 			let obj = JSON.parse(sessionStorage.getItem("bannerList"))
 			$('.choiceImg').attr("src",obj.imgpath)
 			$('.online').val(obj.status)
 			layui.use(['upload','form'],function(){
-				console.log(layui)
+//				console.log(layui)
 				var upload = layui.upload;
 				var form = layui.form;
 				upload.render({
 					elem:"#loadImg",
-					url:'http://192.168.0.100:9001/order/uploadImg',
+					url:'http://js.jinshapeison.com/order/uploadImg',
 					multiple: true,
 					before: function (obj) {
 		                obj.preview(function(index, file, result){
-		                	console.log(index,file)
+//		                	console.log(index,file)
 						$('#demo1preview').attr('src', result); //图片链接（base64）
 					  });
 		            },
 					done:function(res){
-						console.log(res)
+//						console.log(res)
 						$('.choiceImg').attr("src",res.data)
 					}
 				})
+				form.render('select');
 				form.on('select(online)',function(data){
 					obj.status = Number(data.value);
 				})
@@ -96,8 +106,8 @@
 			$('.addPro').click(function(){
 				$.ajax({
 					type:"post",
-					url:"http://192.168.0.100:9001/superUser/updateImg",
-					data:{id:obj.id.toString(),imgpath:$('.choiceImg').attr("src"),status:obj.status.toString()}
+					url:"http://js.jinshapeison.com/superUser/updateImg",
+					data:{id:obj.id.toString(),imgpath:$('.choiceImg').attr("src"),status:obj.status.toString(),addressType}
 				}).then(res=>{
 					if(res.code==0){
 						layui.use('layer',function(){

@@ -15,9 +15,9 @@
 
 </head>
 <body>
-    <div class="login-logo"><h1>金莎配送</h1></div>
+    <div class="login-logo"><h1>金莎配送-辅材</h1></div>
     <div class="login-box">
-        <form class="layui-form layui-form-pane" action="http://192.168.0.101:9001/superUser/search" id="signform" lay-filter="sign">
+        <form class="layui-form layui-form-pane" action="" id="signform" lay-filter="sign">
               
             <h3>登录你的帐号</h3>
             <label class="login-title" for="username">帐号</label>
@@ -31,11 +31,11 @@
             <div class="layui-form-item">
                 <label class="layui-form-label login-form"><i class="iconfont">&#xe82b;</i></label>
                 <div class="layui-input-inline login-inline">
-                  <input type="text" name="password" lay-verify="required" placeholder="请输入你的密码" autocomplete="off" class="layui-input password">
+                  <input type="password" name="password" lay-verify="required" placeholder="请输入你的密码" autocomplete="off" class="layui-input password">
                 </div>
             </div>
             <div class="form-actions">
-                <div class="btn btn-warning pull-right" id="sign">登录</div> 
+                <div class="btn btn-warning pull-right" id="sign">登录</div>
                 <div class="forgot"><a href="#" class="forgot">忘记帐号或者密码</a></div>     
             </div>
         </form>
@@ -63,12 +63,14 @@
     <script>
         $(function  () {
             let obj = {}
-            $('.username').on('input',function(e){
-            	obj.username = e.detail.value||e.currentTarget.value;
-            })
-            $('.password').on('input',function(e){
-            	obj.password = e.detail.value||e.currentTarget.value;
-            })
+//          $('.username').on('input',function(e){
+//          	console.log(e)
+////          	if(e.propertyName!='value') return;
+//          	obj.username = e.detail.value?e.detail.value:e.target.value;
+//          })
+//          $('.password').on('input',function(e){
+//          	obj.password = e.detail.value?e.detail.value:e.target.value;
+//          })
 //          layui.use(['form'], function () {
 //			var form = layui.form();
 //			//监听提交
@@ -88,26 +90,45 @@
 //			
 //			});
             $('#sign').click(function(){
+            	obj.username = $('.username').val();
+            	obj.password = $('.password').val();
             	if(obj.username!=''&&obj.username){
             		if(obj.password!=''&&obj.password){
-            			console.log($('#signform').serialize())
+//          			console.log($('#signform').serialize())
             			let objs = {
             				"username":obj.username,
             				"password":obj.password
             			}
             			$.ajax({
             				type:"post",
-            				url:"http://192.168.0.100/superUser/search",
+            				url:"http://js.jinshapeison.com/superUser/search",
+//							url:"http://192.168.0.102:9002/superUser/search",
             				data:$('#signform').serialize()
-            			}).then(res => {
+            			}).then(function(res){
             				console.log(res)
-            				location.href = './appmanager.html'
-            			}).catch(err => {
+            				if(res.code==0){
+            					sessionStorage.setItem("token",'true');
+            					sessionStorage.setItem("addressType",res.data.address_type);
+            					location.href = './appmanager.html'
+            				}else{
+            					layui.use('layer',function(){
+	            					layui.layer.msg('账号密码错误')
+	            				})
+            				}
+            			}).catch(function(err){
             				layui.use('layer',function(){
             					layui.layer.msg('账号密码错误')
             				})
             			})
+            		}else{
+            			layui.use('layer',function(){
+        					layui.layer.msg('请输入密码')
+        				})
             		}
+            	}else{
+            		layui.use('layer',function(){
+    					layui.layer.msg('请输入账号')
+    				})
             	}
             })
         })

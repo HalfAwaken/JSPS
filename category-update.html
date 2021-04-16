@@ -15,7 +15,9 @@
 		<script type="text/javascript" src="js/xadmin.js"></script>
 
 	</head>
-
+	<style type="text/css">
+		.wrapper .page-content{width: 100%;}
+	</style>
 	<body>
 		<!-- 中部开始 -->
 		<div class="wrapper">
@@ -51,6 +53,8 @@
 							</div>
 						</div>
 					</form>
+					<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
 					<!-- 右侧内容框架，更改从这里结束 -->
 				</div>
 			</div>
@@ -59,9 +63,14 @@
 		<!-- 中部结束 -->
 
 	</body>
+	<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 		$(function() {
+			if(sessionStorage.getItem('token')!='true'){
+				location.href = './index.html';
+			}
 			var obj = {};
+			let addressType = sessionStorage.getItem("addressType");
 			var data = sessionStorage.getItem('categoryData');
 			data = JSON.parse(data);
 			obj = data;
@@ -76,9 +85,10 @@
 			$('.category_add').click(function(){
 				if(obj.itemname!=''&&obj.itemname){
 					if(obj.itemorder!=''&&obj.itemorder){
+						obj.addressType = addressType;
 						$.ajax({
 							type:"post",
-							url:"http://192.168.0.100/goodsItem/updateItem",
+							url:"http://js.jinshapeison.com/goodsItem/updateItem",
 							data:obj
 						}).then(res=>{
 							layui.use('layer',function(){

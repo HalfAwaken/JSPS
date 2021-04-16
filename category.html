@@ -34,13 +34,13 @@
 						<dd>
 							<a href="">切换帐号</a>
 						</dd>
-						<dd>
-							<a href="login.html">退出</a>
+						<dd class="exit">
+							<a href="index.html">退出</a>
 						</dd>
 					</dl>
 				</li>
 				<li class="layui-nav-item">
-					<a href="/">前台首页</a>
+					<a href="appmanager.html">前台首页</a>
 				</li>
 			</ul>
 		</div>
@@ -54,6 +54,24 @@
 						<li class="list" current>
 							<a href="appmanager.html">
 								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="car_manager.html">
+								<i class="iconfont">&#xe761;</i> 车辆管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="tips.html">
+								<i class="iconfont">&#xe761;</i> 温馨提示
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="examine.html">
+								<i class="iconfont">&#xe761;</i> 注册管理
 								<i class="iconfont nav_right">&#xe697;</i>
 							</a>
 						</li>
@@ -78,16 +96,16 @@
 										<i class="iconfont">&#xe6a7;</i> 搬运工管理
 									</a>
 								</li>
-								<li>
+								<!--<li>
 									<a href="member-kiss.html">
 										<i class="iconfont">&#xe6a7;</i> 外部销售管理
 									</a>
-								</li>
-								<li>
+								</li>-->
+								<!--<li>
 									<a href="driverLeave.html">
 										<i class="iconfont">&#xe6a7;</i> 司机请假审核
 									</a>
-								</li>
+								</li>-->
 							</ul>
 						</li>
 						<li class="list">
@@ -127,9 +145,14 @@
 								<i class="iconfont nav_right">&#xe697;</i>
 							</a>
 							<ul class="sub-menu" style="display:none">
-								<li>
+								<!--<li>
 									<a href="order.html">
 										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>-->
+								<li>
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
 									</a>
 								</li>
 								<li>
@@ -142,15 +165,31 @@
 										<i class="iconfont">&#xe6a7;</i> 搬运工订单
 									</a>
 								</li>
-								<li>
-									<a href="saleOrder.html">
-										<i class="iconfont">&#xe6a7;</i> 销售订单
-									</a>
-								</li>
+								
 							</ul>
+						</li>
+						<li class="list">
+							<a href="order.html">
+								<i class="iconfont">&#xe761;</i> 调班系统
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="allOrder.html">
+								<i class="iconfont">&#xe761;</i> 调班系统新
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="proHis.html">
+								<i class="iconfont">&#xe761;</i> 销售统计
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
 						</li>
 					</ul>
 				</div>
+				<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
 			</div>
 			<!-- 左侧菜单结束 -->
 			<!-- 右侧主体开始 -->
@@ -227,17 +266,33 @@
 		<!-- 背景切换结束 -->
 		<!-- 页面动态效果 -->
 		<script src="js/datatype.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			$(function() {
+				if(sessionStorage.getItem('token')!='true'){
+					location.href = './index.html';
+				}
+				$('.exit').click(function(){
+					sessionStorage.setItem("token",'false')
+				})
 				var userLists = [];
 				var category_data;
+				let addressType = sessionStorage.getItem("addressType");
+				if(addressType==1){
+					$('title').html("金莎配送辅材");
+					$('.logo a').html("金莎配送辅材");
+				}else{
+					$("title").html("金莎配送白云区");
+					$(".logo a").html("金莎配送白云区");
+				}
 //				window.requestData = requestData;
 				function requestData(){
 					$.ajax({
 						type: "get",
-						url: "http://192.168.0.100/goodsItem/findAll"
+						url: "http://js.jinshapeison.com/goodsItem/findAll?addressType="+addressType
+//						url: "http://192.168.0.102:9002/goodsItem/findAll?addressType="+addressType
 					}).then(res => {
-						console.log(res)
+//						console.log(res)
 						let datas = res.data;
 						category_data = datas;
 						if(datas.length>0){
@@ -263,7 +318,7 @@
 					let arr = [];
 					$.each(data, function(index,ele) {
 						let obj = {};
-						console.log(ele,index)
+//						console.log(ele,index)
 						obj.category_name = ele.itemname;
 						obj.category_num = ele.itemorder;
 						obj.operation = '<div style="display: flex;justify-content: space-around;height: 100%;"><div class="updateCategory layui-btn layui-btn-normal" data-index="'+index+'" style="height: 28px;line-height: 28px;">修改</div><div class="delCategory layui-btn layui-btn-danger" style="height: 28px;line-height: 28px;" data-id="'+ele.id+'">删除</div></div>';
@@ -272,19 +327,19 @@
 					return arr;
 				}
 				function userOpreation(){
-					$('.updateCategory').click(function(e){
+					$('.updateCategory').off().on('click',function(e){
 						sessionStorage.setItem('categoryData',JSON.stringify(category_data[e.currentTarget.dataset.index]))
 						member_add('添加分类','category-update.html','600','500');
 					})
-					$('.delCategory').click(function(e){
-						console.log(e)
+					$('.delCategory').off().on('click',function(e){
+//						console.log(e)
 						$.ajax({
 							type:"post",
-							url:"http://192.168.0.100/goodsItem/deleteItem",
-							data:{id:e.currentTarget.dataset.id}
+							url:"http://js.jinshapeison.com/goodsItem/deleteItem",
+							data:{id:e.currentTarget.dataset.id,addressType}
 						}).then(res=>{
 							layui.use('layer',function(){
-								console.log(res)
+//								console.log(res)
 								if(res.code==0){
 									layui.layer.msg('删除成功');
 									requestData();
@@ -325,7 +380,7 @@
 						]],
 						data:userList,
 						done:function(){
-							
+							userOpreation()
 						}
 					})
 

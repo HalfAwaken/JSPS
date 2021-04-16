@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>消费记录</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+
+	</head>
+	<style type="text/css">
+		.recharge{
+			display: inline-block;cursor: pointer;margin-left: 10px;width: 50px;height: 24px;text-align: center;line-height: 24px;background: #F0AD4E;
+		}
+		.useHistory{
+			display: inline-block;cursor: pointer;width: 70px;height: 24px;text-align: center;line-height: 22px;border: 1px solid #ccc;box-sizing: border-box;margin-left: 10px;
+		}
+		.payHistory{
+			display: inline-block;cursor: pointer;width: 70px;height: 24px;text-align: center;line-height: 22px;border: 1px solid #ccc;box-sizing: border-box;margin-left: 10px;
+		}
+	</style>
+	<body style="padding: 20px;box-sizing: border-box;">
+		<div>
+			<table id="userList" lay-filter="userList"></table>
+			<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+			<div class="aa"></div>
+		</div>
+		
+		<!-- 背景切换结束 -->
+		<!-- 页面动态效果 -->
+		<script src="js/datatype.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+				if(sessionStorage.getItem('token')!='true'){
+					location.href = './index.html';
+				}
+				var userIds = location.href.split("?id=")[1]
+				$('.exit').click(function(){
+					sessionStorage.setItem("token",'false')
+				})
+				var userLists = [];
+				let addressType = sessionStorage.getItem("addressType");
+				if(addressType==1){
+					$('title').html("金莎配送天河区");
+					$('.logo a').html("金莎配送天河区");
+				}else{
+					$("title").html("金莎配送白云区");
+					$(".logo a").html("金莎配送白云区");
+				}
+				//				window.requestData = requestData;
+				function requestData() {
+					$.ajax({
+						type: "get",
+						url: "http://js.jinshapeison.com/secondController/searchUserExpense",
+//						url: "http://192.168.0.108:9002/secondController/searchUserExpense",
+						data: {
+							userId: userIds
+						}
+					}).then(res => {
+//						console.log(res.data)
+//						let datas = getRealJsonData(res.data);
+//						console.log(resdata)
+//						let datas = JSON.parse(resdata)
+//						console.log(datas)
+						let datas = res.data;
+						if(datas.length > 0) {
+							userLists = tableData(datas)
+						} else {
+							userLists = [];
+						}
+						layui.use('table', function() {
+							var table = layui.table;
+							table.reload('userList', {
+								data: userLists.filter(function(data, index) {
+									return data;
+								})
+							});
+						})
+						setTimeout(function() {
+							userOpreation()
+						}, 1000)
+					})
+				}
+				
+				
+				//表数据格式
+				function tableData(data) {
+					let arr = [];
+					$.each(data, function(index, ele) {
+						let obj = {};
+//						console.log(ele, index)
+						obj.nickname = ele.orderId;
+						obj.username = ele.expenseMoney;
+//						obj.password = ele.password;
+//						if(ele.isvip == 0) {
+//							obj.vip = "<div class='becomeVip' data-id='" + ele.userid + "' style='width: 80px;height: 30px;background: red;color: white;text-align: center;line-height: 30px;'>设为会员</div>"
+//						} else {
+//							obj.vip = "<div class='cancelVip' data-id='" + ele.userid + "' style='width: 80px;height: 30px;background: #999;color: white;text-align: center;line-height: 30px;'>取消会员</div>"
+//						}
+//						if(ele.status == 1) {
+//							obj.operation = "<div><span style='color: #76EE00;'>正常</span> | <span style='color: #999;' class='stopUser' data-id='" + ele.userid + "'>停用</span><span class='recharge' data-id='"+ele.userid+"'>充值</span><span class='useHistory' data-id='"+ele.userid+"'>消费记录</span><span class='payHistory' data-id='"+ele.userid+"'>充值记录</span></div>"
+//						} else {
+//							obj.operation = "<div><span style='color: #999;' class='openUser' data-id='" + ele.userid + "'>启用</span> | <span style='color: red;'>已停用</span><span class='recharge' data-id='"+ele.userid+"'>充值</span><span class='useHistory' data-id='"+ele.userid+"'>消费记录</span><span class='payHistory' data-id='"+ele.userid+"'>充值记录</span></div>"
+//						}
+						obj.operation = new Date(ele.createTime).toLocaleString();
+						arr.push(obj)
+					});
+					return arr;
+				}
+
+				function userOpreation() {
+					$('.recharge').off().on('click',function(e){
+						let id = $(this)[0].dataset.id;
+						member_add('充值','recharge.html?id='+id,'600','500');
+					})
+					$('.useHistory').off().on('click',function(e){
+						let id = $(this)[0].dataset.id;
+						member_add('消费记录','useHistory.html?id='+id,'1200','700');
+					})
+					$('.payHistory').off().on('click',function(e){
+						let id = $(this)[0].dataset.id;
+						member_add('充值记录','payHistory.html?id='+id,'1200','700');
+					})
+					$('.stopUser').off().on('click',function() {
+//						console.log($(this))
+						let id = $(this)[0].dataset.id;
+						$.ajax({
+							type: "post",
+							url: "http://js.jinshapeison.com/comUser/updateComUser",
+//							url: "http://192.168.0.101:9002/comUser/updateComUser",
+							data: {
+								id: id,
+								status: 0
+							}
+						}).then(res => {
+							requestData();
+						})
+					})
+					$('.openUser').off().on('click',function() {
+						let id = $(this)[0].dataset.id;
+						$.ajax({
+							type: "post",
+							url: "http://js.jinshapeison.com/comUser/updateComUser",
+//							url: "http://192.168.0.101:9002/comUser/updateComUser",
+							data: {
+								id: id,
+								status: 1
+							}
+						}).then(res => {
+							requestData();
+						})
+					})
+					$('.becomeVip').off().on('click',function() {
+						let id = $(this)[0].dataset.id;
+						$.ajax({
+							type: "post",
+							url: "http://js.jinshapeison.com/comUser/updateComUser",
+//							url: "http://192.168.0.101:9002/comUser/updateComUser",
+							data: {
+								id: id,
+								isvip: 1
+							}
+						}).then(res => {
+							requestData();
+						})
+					})
+					$('.cancelVip').off().on('click',function() {
+						let id = $(this)[0].dataset.id;
+						$.ajax({
+							type: "post",
+							url: "http://js.jinshapeison.com/comUser/updateComUser",
+//							url: "http://192.168.0.101:9002/comUser/updateComUser",
+							data: {
+								id: id,
+								isvip: 0
+							}
+						}).then(res => {
+							requestData();
+						})
+					})
+				}
+				layui.use(['laydate', 'table'], function() {
+					var laydate = layui.laydate; //日期插件
+					var table = layui.table;
+					//以上模块根据需要引入
+					//
+					laydate.render({
+						elem: '#LAY_demorange_s'
+					});
+
+					laydate.render({
+						elem: '#LAY_demorange_e'
+					});
+					table.render({
+						elem: "#userList",
+						page: true,
+						cols: [
+							[{
+									field: 'nickname',
+									title: '订单号'
+								},
+								{
+									field: 'username',
+									title: '消费金额'
+								},
+//								{
+//									field: 'password',
+//									title: '账户密码'
+//								},
+//								{
+//									field: 'vip',
+//									title: '设为会员'
+//								},
+								{
+									field: 'operation',
+									title: '下单时间'
+								}
+							]
+						],
+						data: userList,
+						done: function() {
+							userOpreation()
+						}
+					})
+
+				});
+				setTimeout(function() {
+					requestData();
+				}, 100)
+			})
+
+			/*用户-添加*/
+			function member_add(title, url, w, h) {
+				x_admin_show(title, url, w, h);
+			}
+		</script>
+
+	</body>
+
+</html>

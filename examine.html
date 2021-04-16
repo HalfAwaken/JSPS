@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>内部销售管理</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+
+	</head>
+
+	<body>
+		<!-- 顶部开始 -->
+		<div class="container">
+			<div class="logo">
+				<a href="index.html" style="color: white;">金莎配送</a>
+			</div>
+			<div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+			<ul class="layui-nav right" lay-filter="">
+				<li class="layui-nav-item">
+					<a href="javascript:;">admin</a>
+					<dl class="layui-nav-child">
+						<!-- 二级菜单 -->
+						<dd>
+							<a href="">个人信息</a>
+						</dd>
+						<dd>
+							<a href="">切换帐号</a>
+						</dd>
+						<dd class="exit">
+							<a href="index.html">退出</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="appmanager.html">前台首页</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 顶部结束 -->
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 左侧菜单开始 -->
+			<div class="left-nav">
+				<div id="side-nav">
+					<ul id="nav">
+						<li class="list">
+							<a href="appmanager.html">
+								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="car_manager.html">
+								<i class="iconfont">&#xe761;</i> 车辆管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="tips.html">
+								<i class="iconfont">&#xe761;</i> 温馨提示
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list" current>
+							<a href="examine.html">
+								<i class="iconfont">&#xe761;</i> 注册管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe70b;</i> 用户管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="member-list.html">
+										<i class="iconfont">&#xe6a7;</i> 内部销售管理
+									</a>
+								</li>
+								<li>
+									<a href="member-del.html">
+										<i class="iconfont">&#xe6a7;</i> 司机管理
+									</a>
+								</li>
+								<li>
+									<a href="member-level.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工管理
+									</a>
+								</li>
+								<!--<li>
+									<a href="member-kiss.html">
+										<i class="iconfont">&#xe6a7;</i> 外部销售管理
+									</a>
+								</li>-->
+								<!--<li>
+									<a href="driverLeave.html">
+										<i class="iconfont">&#xe6a7;</i> 司机请假审核
+									</a>
+								</li>-->
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 商品管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="category.html">
+										<i class="iconfont">&#xe6a7;</i> 商品分类
+									</a>
+								</li>
+								<li>
+									<a href="product.html">
+										<i class="iconfont">&#xe6a7;</i> 商品列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 轮播管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="setBanner.html">
+										<i class="iconfont">&#xe6a7;</i> 轮播列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 订单管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<!--<li>
+									<a href="order.html">
+										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>-->
+								<li>
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
+									</a>
+								</li>
+								<li>
+									<a href="driverOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 司机订单
+									</a>
+								</li>
+								<li>
+									<a href="hamalOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工订单
+									</a>
+								</li>
+								
+							</ul>
+						</li>
+						<li class="list">
+							<a href="order.html">
+								<i class="iconfont">&#xe761;</i> 调班系统
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="allOrder.html">
+								<i class="iconfont">&#xe761;</i> 调班系统新
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="proHis.html">
+								<i class="iconfont">&#xe761;</i> 销售统计
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
+			</div>
+			<!-- 左侧菜单结束 -->
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<!--<form class="layui-form xbs" action="">
+						<div class="layui-form-pane" style="text-align: left;">
+							<div class="layui-form-item" style="display: inline-block;">-->
+								<!--<label class="layui-form-label xbs768">日期范围</label>
+								<div class="layui-input-inline xbs768">
+									<input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
+								</div>
+								<div class="layui-input-inline xbs768">
+									<input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
+								</div>-->
+								<!--<div class="layui-input-inline">
+									<input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+								</div>
+								<div class="layui-input-inline" style="width:80px">
+									<button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+								</div>
+							</div>
+						</div>
+					</form>-->
+					<xblock><button class="layui-btn" onclick="member_add('新增提示','tips-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button></xblock>
+					<table id="userList" lay-filter="userList"></table>
+					<div id="operation" style="display: none;">
+						<a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
+							<i class="layui-icon">&#xe601;</i>
+						</a>
+						<a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-edit.html','4','','510')" class="ml-5" style="text-decoration:none">
+							<i class="layui-icon">&#xe642;</i>
+						</a>
+						<a style="text-decoration:none" onclick="member_password('修改密码','member-password.html','10001','600','400')" href="javascript:;" title="修改密码">
+							<i class="layui-icon">&#xe631;</i>
+						</a>
+						<a title="删除" href="javascript:;" onclick="member_del(this,'1')" style="text-decoration:none">
+							<i class="layui-icon">&#xe640;</i>
+						</a>
+					</div>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+		<!-- 底部开始 -->
+		<!--<div class="footer">
+			<div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved. 本后台系统由X前端框架提供前端技术支持</div>
+		</div>-->
+		<!-- 底部结束 -->
+		<!-- 背景切换开始 -->
+		<div class="bg-changer">
+			<div class="swiper-container changer-list">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img class="item" src="images/a.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/b.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/c.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/d.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/e.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/f.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/g.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/h.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/i.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/j.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/k.jpg" alt=""></div>
+					<div class="swiper-slide"><span class="reset">初始化</span></div>
+				</div>
+			</div>
+			<div class="bg-out"></div>
+			<div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+		</div>
+		<!-- 背景切换结束 -->
+		<!-- 页面动态效果 -->
+		<script src="js/datatype.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+				if(sessionStorage.getItem('token')!='true'){
+					location.href = './index.html';
+				}
+				let addressType = sessionStorage.getItem("addressType");
+				$('.exit').click(function(){
+					sessionStorage.setItem("token",'false')
+				})
+				var userLists = [];
+				var category_data;
+//				window.requestData = requestData;
+				if(addressType==1){
+					$('title').html("金莎配送天河区");
+					$('.logo a').html("金莎配送天河区");
+				}else{
+					$("title").html("金莎配送白云区");
+					$(".logo a").html("金莎配送白云区");
+				}
+				function requestData(){
+					$.ajax({
+						type: "get",
+						url: "http://js.jinshapeison.com/superUser/findAuditUser?addressType="+addressType
+//						url: "http://192.168.0.101:9002/superUser/findAuditUser"
+					}).then(res => {
+//						console.log(res)
+						let datas = res.data;
+						category_data = datas;
+						if(datas.length>0){
+							userLists = tableData(datas)
+						}else{
+							userLists = [];
+						}
+						layui.use('table',function(){
+							var table = layui.table;
+							table.reload('userList', {
+								data:userLists.filter(function(data, index){
+									return data;
+								})
+							});
+						})
+						setTimeout(function(){
+							userOpreation()
+						},1000)
+					})
+				}
+				//表数据格式
+				function tableData(data){
+					let arr = [];
+					$.each(data, function(index,ele) {
+						let obj = {};
+//						console.log(ele,index)
+						obj.category_name = ele.username;
+						obj.usertype = ele.usertype;
+						obj.phone = ele.phone;
+//						obj.category_num = ele.itemorder;
+						obj.operation = '<div style="display: flex;justify-content: space-around;height: 100%;"><div class="updateCategory layui-btn layui-btn-normal" data-id="'+ele.userid+'" data-index="'+index+'" style="height: 28px;line-height: 28px;">通过</div><div class="delCategory layui-btn layui-btn-danger" style="height: 28px;line-height: 28px;" data-id="'+ele.id+'">拒绝</div></div>';
+						arr.push(obj)
+					});
+					return arr;
+				}
+				function userOpreation(){
+					$('.updateCategory').off().on('click',function(e){
+						console.log(e)
+						let id = e.currentTarget.dataset.id;
+						layui.use('layer',function(){
+							layui.layer.confirm('确定通过审核吗？',function(index){
+								$.ajax({
+									type:"post",
+									url:"http://js.jinshapeison.com/comUser/updateComUser",
+//									url:"http://192.168.0.101:9002/comUser/updateComUser",
+									data:{
+										id:id,
+										status:1,
+										addressType
+									}
+								}).then(res=>{
+									layui.layer.close(index)
+									setTimeout(function(){
+										layui.layer.msg("已通过审核")
+										requestData()
+									},100)
+								})
+							})
+						})
+					})
+					$('.delCategory').off().on('click',function(e){
+						let id = e.currentTarget.dataset.id;
+						layui.use('layer',function(){
+							layui.layer.confirm('确定要拒绝通过吗？',function(index){
+								$.ajax({
+									type:"post",
+									url:"http://js.jinshapeison.com/comUser/updateComUser",
+//									url:"http://192.168.0.101:9002/comUser/updateComUser",
+									data:{
+										id:id,
+										status:4
+									}
+								}).then(res=>{
+									console.log(res)
+									layui.layer.close(index)
+									setTimeout(function(){
+										layui.layer.msg("已拒绝审核")
+										requestData()
+									},100)
+								})
+							})
+						})
+					})
+				}
+				layui.use(['laydate', 'table'], function() {
+					var laydate = layui.laydate; //日期插件
+					var table = layui.table;
+					//以上模块根据需要引入
+					//
+					laydate.render({
+						elem: '#LAY_demorange_s'
+					});
+
+					laydate.render({
+						elem: '#LAY_demorange_e'
+					});
+					table.render({
+						elem: "#userList",
+						page: true,
+						cols: [[{
+								field: 'category_name',
+								title: '姓名'
+						},{
+								field: 'usertype',
+								title: '身份'
+						},{
+								field: 'phone',
+								title: '手机号'
+						},
+							{
+								field: 'operation',
+								title: '操作'
+							}
+						]],
+						data:userList,
+						done:function(){
+							userOpreation()
+						}
+					})
+
+				});
+				setTimeout(function(){
+					requestData();
+				},100)
+			})
+			
+			/*用户-添加*/
+			function member_add(title, url, w, h) {
+				x_admin_show(title, url, w, h);
+			}
+		</script>
+
+	</body>
+
+</html>

@@ -18,6 +18,8 @@
 	<style type="text/css">
 		.layui-table-cell {
 			height: auto;
+			max-height: 250px;
+			overflow-y: auto;
 		}
 		
 		.order_msg {
@@ -31,26 +33,40 @@
 		
 		.pro_item {
 			display: flex;
+			flex-direction: column;
 			margin-bottom: 10px;
+			margin-right: 10px;
+			font-size: 13px;
 		}
 		
 		.pro_item:first-child {
 			margin-top: 10px;
 		}
 		
+		.product_msg{
+			display: flex;
+			flex-wrap: wrap;
+		}
+		
 		.pro_item>img {
-			width: 80px;
-			height: 80px;
-			min-width: 80px;
+			width: 50px;
+			height: 50px;
+			min-width: 50px;
 			flex: 9;
+			max-width: 50px;
 		}
 		
 		.pro_item>div {
 			display: flex;
 			justify-content: space-around;
 			flex-direction: column;
-			margin-left: 20px;
+			/*margin-left: 20px;*/
 			flex: 1;
+		}
+		
+		.pro_item>div>div{
+			line-height: 13px;
+			margin-top: 5px;
 		}
 		
 		.pro_total {
@@ -73,10 +89,22 @@
 			line-height: 30px;
 		}
 		
+		.status_wrap>div{
+			margin-right: 10px;
+		}
+		
+		.status_wrap>div:last-child{
+			margin-right: 0;
+		}
+		
 		.coustomer_msg {
 			display: flex;
 			justify-content: space-around;
 			flex-direction: column;
+		}
+		
+		.coustomer_msg>div{
+			white-space: pre-wrap;
 		}
 		
 		.transport_msg {
@@ -85,7 +113,7 @@
 			justify-content: space-around;
 		}
 		.layui-table-view{
-			width: calc(100% - 200px);
+			/*width: calc(100% - 550px);*/
 		}
 		.items{
 			color: #999;
@@ -115,8 +143,8 @@
 						<dd>
 							<a href="">切换帐号</a>
 						</dd>
-						<dd>
-							<a href="login.html">退出</a>
+						<dd class="exit">
+							<a href="index.html">退出</a>
 						</dd>
 					</dl>
 				</li>
@@ -135,6 +163,24 @@
 						<li class="list" current>
 							<a href="appmanager.html">
 								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="car_manager.html">
+								<i class="iconfont">&#xe761;</i> 车辆管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="tips.html">
+								<i class="iconfont">&#xe761;</i> 温馨提示
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="examine.html">
+								<i class="iconfont">&#xe761;</i> 注册管理
 								<i class="iconfont nav_right">&#xe697;</i>
 							</a>
 						</li>
@@ -159,16 +205,16 @@
 										<i class="iconfont">&#xe6a7;</i> 搬运工管理
 									</a>
 								</li>
-								<li>
+								<!--<li>
 									<a href="member-kiss.html">
 										<i class="iconfont">&#xe6a7;</i> 外部销售管理
 									</a>
-								</li>
-								<li>
+								</li>-->
+								<!--<li>
 									<a href="driverLeave.html">
 										<i class="iconfont">&#xe6a7;</i> 司机请假审核
 									</a>
-								</li>
+								</li>-->
 							</ul>
 						</li>
 						<li class="list">
@@ -208,9 +254,14 @@
 								<i class="iconfont nav_right">&#xe697;</i>
 							</a>
 							<ul class="sub-menu opened">
-								<li>
+								<!--<li>
 									<a href="order.html">
 										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>-->
+								<li class="current">
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
 									</a>
 								</li>
 								<li>
@@ -223,12 +274,26 @@
 										<i class="iconfont">&#xe6a7;</i> 搬运工订单
 									</a>
 								</li>
-								<li class="current">
-									<a href="saleOrder.html">
-										<i class="iconfont">&#xe6a7;</i> 销售订单
-									</a>
-								</li>
+								
 							</ul>
+						</li>
+						<li class="list">
+							<a href="order.html">
+								<i class="iconfont">&#xe761;</i> 调班系统
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="allOrder.html">
+								<i class="iconfont">&#xe761;</i> 调班系统新
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="proHis.html">
+								<i class="iconfont">&#xe761;</i> 销售统计
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -238,7 +303,7 @@
 			<div class="page-content">
 				<div class="content">
 					<!-- 右侧内容框架，更改从这里开始 -->
-					<form class="layui-form xbs" action="">
+					<form class="layui-form xbs" action="" style="display: flex;justify-content: space-between;align-items: center;">
 						<div class="layui-form-pane" style="text-align: left;">
 							<div class="layui-form-item" style="display: inline-block;">
 								<label class="layui-form-label xbs768">日期范围</label>
@@ -249,19 +314,24 @@
 									<input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
 								</div>
 								<div class="layui-input-inline">
-									<input type="text" name="userphone" placeholder="请输入搬运工用户名" autocomplete="off" class="layui-input userphone">
+									<input type="text" name="userphone" placeholder="请输入搜索内容" autocomplete="off" class="layui-input userphone">
 								</div>
 								<div class="layui-input-inline" style="width:80px">
-									<div class="layui-btn userphone"><i class="layui-icon">&#xe615;</i></div>
+									<div class="layui-btn search"><i class="layui-icon">&#xe615;</i></div>
 								</div>
 							</div>
 						</div>
+						<button type="button" class="layui-btn layui-input-inline puts">打印</button>
 					</form>
+					<!-- 全选 -->
+					<div class="all" style="cursor: pointer;">全选</div>
 					<!--<xblock><button class="layui-btn" onclick="member_add('添加用户','member-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button></xblock>-->
 					<table id="userList" lay-filter="userList"></table>
 					<!-- 右侧内容框架，更改从这里结束 -->
 				</div>
 			</div>
+			<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
 			<!-- 右侧主体结束 -->
 		</div>
 		
@@ -291,12 +361,29 @@
 			</div>
 			<div class="bg-out"></div>
 			<div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+			
 		</div>
 		<!-- 背景切换结束 -->
 		<!-- 页面动态效果 -->
 		<script src="js/datatype.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			$(function() {
+				
+				if(sessionStorage.getItem('token')!='true'){
+					location.href = './index.html';
+				}
+				$('.exit').click(function(){
+					sessionStorage.setItem("token",'false')
+				})
+				let addressType = sessionStorage.getItem("addressType");
+				if(addressType==1){
+					$('title').html("金莎配送天河区");
+					$('.logo a').html("金莎配送天河区");
+				}else{
+					$("title").html("金莎配送白云区");
+					$(".logo a").html("金莎配送白云区");
+				}
 				var userLists = [];
 				var typenum = 0;
 				$('.items').click(function(){
@@ -309,67 +396,47 @@
 				})
 				//				window.requestData = requestData;
 				function requestData(typenum) {
+					let obj = {};
+					obj.addressType = addressType;
+					console.log($('#LAY_demorange_s').val())
+					console.log($('#LAY_demorange_e').val())
+					console.log($('.userphone').val())
+					if($('#LAY_demorange_s').val()){
+						obj.startDate = new Date($('#LAY_demorange_s').val()).getTime();
+					}
+					if($('#LAY_demorange_e').val()){
+						obj.endDate = new Date($('#LAY_demorange_e').val()).getTime();
+					}
+					if($('.userphone').val().trim()){
+						obj.orderId = $('.userphone').val().trim();
+					}
+					console.log(obj)
+					obj.page = 1;
+					obj.limit = 10;
 					$.ajax({
-						type: "get",
-						url: "http://192.168.0.100:9001/order/findAll"
+						type: "post",
+						url: "http://js.jinshapeison.com/secondController/findAllSellSecondOrder",
+//						url: "http://192.168.0.109:9002/secondController/findAllSellSecondOrder",
+						data:obj
 					}).then(res => {
 						console.log(res)
-						console.log(res.data)
+//						console.log(res.data)
 						let datas = res.data;
-						if(typenum==0){
-							let arr = [];
-							res.data.forEach(cur=>{
-								if(cur.status==8){
-									arr.push(cur)
-								}
+						setTimeout(function(){userLists = tableData(datas)},500)
+						setTimeout(function(){
+							layui.use('table', function() {
+								var table = layui.table;
+								table.reload('userList', {
+									data: userLists.filter(function(data, index) {
+										return data;
+									}),
+									page: {
+							            curr: 1 //重新从第 1 页开始
+							        },
+								});
 							})
-							datas = arr;
-						}else if(typenum==1){
-							let arr = [];
-							res.data.forEach(cur=>{
-								if(cur.status==1){
-									arr.push(cur)
-								}
-							})
-							datas = arr;
-						}else if(typenum==2){
-							let arr = [];
-							res.data.forEach(cur=>{
-								if(cur.status==2){
-									arr.push(cur)
-								}
-							})
-							datas = arr;
-						}else if(typenum==3){
-							let arr = [];
-							res.data.forEach(cur=>{
-								if(cur.status>2&&cur.status<8){
-									arr.push(cur)
-								}
-							})
-							datas = arr;
-						}else if(typenum==4){
-							let arr = [];
-							res.data.forEach(cur=>{
-								if(cur.status==8){
-									arr.push(cur)
-								}
-							})
-							datas = arr;
-						}
-						if(datas.length > 0) {
-							userLists = tableData(datas)
-						} else {
-							userLists = [];
-						}
-						layui.use('table', function() {
-							var table = layui.table;
-							table.reload('userList', {
-								data: userLists.filter(function(data, index) {
-									return data;
-								})
-							});
-						})
+						},600)
+						
 						setTimeout(function() {
 							userOpreation()
 						}, 1000)
@@ -378,168 +445,269 @@
 				var productList;
 				$.ajax({
 					type:"get",
-					url:"http://192.168.0.100:9001/goods/findAll"
+					url:"http://js.jinshapeison.com/goods/findAll?addressType="+addressType
 				}).then(res=>{
-					console.log(res)
+//					console.log(res)
 					productList = res.data;
 				})
 				//表数据格式
 				function tableData(data) {
 					let arr = [];
+					
 					$.each(data, function(index, ele) {
 						let dates = new Date(ele.createtime);
 						let obj = {};
-						let times = ele.postime.split("-");
-						let time1 = new Date(Number(times[0])).toLocaleString();
-						let time2 = new Date(Number(times[1])).toLocaleString();
-						let goods = JSON.parse(ele.goodsorder)
-						let goodArr = [];
-						$.each(productList, function(pIndex,pEle) {
-							$.each(goods, function(cIndex,cEle) {
-								if(pEle.id==cEle.id){
-									pEle.qty = cEle.qty;
-									goodArr.push(pEle)
-								}
-							});
-						});
+//						let times = ele.postime.substring(0,ele.postime.length-1).split(",");
+						let timeStr = ``;
+//						$.each(times,function(timeIndex,timeEle){
+//							timeStr = timeStr + `<div>配送时间：${timeEle}</div>`
+//						})
+						let goods_list = JSON.parse(ele.goods_list);
 						var str = '';
-						goodArr.forEach(cur=>{
+						goods_list.forEach(cur=>{
 							var strs = `<div class="pro_item">
 							<img src="${cur.goodimg}" />
 							<div>
-								<div class="pro_title">${cur.goodname}</div>
+								<div class="pro_title">${cur.goodsName}</div>
 								<div class="pro_spec">
-									<text>规格：${cur.goodspe}</text>
+									<text>${cur.goodspe}</text>
 									
 								</div>
-								<div><text>数量：${cur.qty}</text></div>
+								<div><text>数量:${cur.qty}</text></div>
 							</div>
 						</div>`
 							str = str+strs
 						})
-						obj.ordermsg = `<div class="order_msg">
-										<div>订单：${ele.orderid}</div>
-										<div>下单人：${ele.receiver} ${ele.receivernum}</div>
-										<div>下单时间：${new Date(ele.createtime).toLocaleString()}</div>
-										<div>配送时间：${time1}-${time2}</div>
+						let time_strs = ``;
+						let time_arr,matching,flag;
+						flag = true
+						if(ele.status==5){
+							matching = `<div style="border: 1px solid #999;padding: 3px 5px;width: 80px;text-align: center;cursor: pointer;" class="passOrder" data-id="${ele.order_id}">通过审核</div><div class="export" data-id="${ele.order_id}" style="border: 1px solid #999;padding: 3px 5px;width: 80px;text-align: center;cursor: pointer;">导出订单</div>`
+						}else if(ele.status==6){
+							matching = `<div style="border: 1px solid #999;padding: 3px 5px;width: 80px;text-align: center;cursor: pointer;">已审核</div><div class="export" data-id="${ele.order_id}" style="border: 1px solid #999;padding: 3px 5px;width: 80px;text-align: center;cursor: pointer;">导出订单</div>`
+						}else{
+							matching = `<div style="border: 1px solid #999;padding: 3px 5px;width: 80px;text-align: center;cursor: pointer;" class="export" data-id="${ele.order_id}">导出订单</div>`
+						}
+						if(ele.cart_quantum==1){
+							time_arr = ele.delivery_time + " 7点前";
+						}else if(ele.cart_quantum==2){
+							time_arr = ele.delivery_time + " 10点前";
+						}else if(ele.cart_quantum==3){
+							time_arr = ele.delivery_time + " 12点前";
+						}else if(ele.cart_quantum==4){
+							time_arr = ele.delivery_time + " 14点前";
+						}else if(ele.cart_quantum==5){
+							time_arr = ele.delivery_time + " 17点前";
+						}else if(ele.cart_quantum==6){
+							time_arr = ele.delivery_time + " 20:00-23:30";
+						}else{
+							time_arr = ele.delivery_time;
+						}
+						obj.ordermsg = `<div class="order_msg" style="font-size: 12px;dispaly: flex; flex-direction: row; align-items: center;">
+						                <div calss="left" style="margin-right: 12px;"><input type="checkbox"  name="orderId" lay-filter="switchTest" lay-skin="primary" order=${ele.order_id} class='checks' /></div>
+										<div class="right">
+										<div style="color:#009688;">订单配送时间：${time_arr}</div>
+										
+										<div>订单：${ele.order_id}</div>
+										<div>下单人：${ele.sell_name} ${ele.sell_phone}</div>
+										<div class="status_wrap" style="display: flex;">${matching}</div>
+										</div>
 									</div>`
+									
+									
+						$('.all').off().on('click',function () {
+							if(flag) {
+								// attr('order',ele.order_id)
+								$('.layui-form-checkbox').addClass('layui-form-checked')
+								$('input[name="orderId"]').attr("checked",true);
+								flag = false
+							}else {
+								// .removeArrt('order')
+								$('.layui-form-checkbox').removeClass('layui-form-checked')
+								$('input[name="orderId"]').removeAttr("checked",true);
+								flag = true
+							}
+						})
+						$('.puts').off().on('click',function () {
+							 let arr = $('input[name="orderId"]');
+							 let orders =[];
+							 $.each(arr,function(i,t){
+								 if($(t).is(":checked")){
+									orders.push($(t).attr('order')); 
+								 }
+							 })
+							 $.ajax({
+							 					type:"get",
+							 					url:"http://js.jinshapeison.com/secondController/thirdPrint?orderId="+orders
+							 				}).then(res=>{
+							 					console.log(res)
+							 					
+							 				})
+						})
 						obj.promsg = `<div class="product_msg">${str}</div>`
 						obj.pricemsg = `<div class="pro_total">
-						<div>商品合计：${ele.goodpay}元</div>
-						<div>运费合计：${ele.postpay}元</div>
-						<div>搬运费合计：${ele.carrypay}元</div>
-						<div>总金额：<span style="font-size: 18px;color: red;">${ele.payment}</span>元</div>
+						<div>本单量:${ele.goods_size}方</div>
+						<div>商品合计:${ele.goods_money}元</div>
+						<div>运费合计:${ele.delivery_money}元</div>
+						<div>搬运费合计:${ele.worker_money}元</div>
+						<div>总金额:<span style="font-size: 18px;color: red;">${ele.payment}</span>元</div>
 					</div>`
-						if(ele.status==1){
-							obj.paymsg = `<div class="pro_status" style="color: red;">
-								未支付
-							</div>`
-						}else if(ele.status>1&&ele.status!=9){
-							obj.paymsg = `<div class="pro_status">
-								<div><span style="color: red;">${ele.payment}</span>元</div>
-								<div class="pay_method">微信支付</div>
-							</div>`
-						}else if(ele.status==9){
-							obj.paymsg = `<div class="pro_status" style="color: #999;">
-								已取消
-							</div>`
-						}
-						let drivermsg,carrymsg;
-						if(ele.driverid&&ele.driverid!=''){
-							$.ajax({
-								type:"post",
-								url:"http://192.168.0.100:9001/superUser/findComUserById",
-								data:{userid:ele.driverid},
-								async:false
-							}).then(user=>{
-								console.log(user)
-								drivermsg = user.data[0]
-							})
-						}
-						if(ele.carryid&&ele.carryid!=''){
-							$.ajax({
-								type:"post",
-								url:"http://192.168.0.100:9001/superUser/findComUserById",
-								data:{userid:ele.carryid},
-								async:false
-							}).then(user=>{
-								console.log(user)
-								carrymsg = user.data[0]
-							})
-						}
+						
 						obj.customermsg = `<div class="coustomer_msg">
-						<div>客户信息 ${ele.receiver} ${ele.receivernum}</div>
-						<div>客户地址：${ele.receiveraddre}</div>
+						<div>客户信息 ${ele.receiver_name} ${ele.receiver_phone}</div>
+						<div>客户地址：${ele.receiver_address}</div>
+						<div>备注：${ele.comment}</div>
 					</div>`
-						obj.transport = `<div class="transport_msg">
-						<div>一方车1号车：陈啊啊 12345678901</div>
-						<div>搬运工：陈先生 12345678901</div>
-					</div>`
-						let driverStatus,carryStatus,matching;
-						if(ele.status==2||ele.status==1){
-							driverStatus = '未开始';
-							carryStatus = '未开始';
-							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;" data-orderid="${ele.orderid}" class="addCarry">${ele.carryid?"正在配送":"匹配搬运工"}</div>`
-						}else if(ele.status==4){
-							driverStatus = '配送中';
-							carryStatus = '未开始';
-							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;" data-orderid="${ele.orderid}" class="addCarry">${ele.carryid?"正在配送":"匹配搬运工"}</div>`
-						}else if(ele.status==5){
-							driverStatus = '已完成';
-							carryStatus = '未开始';
-							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;" data-orderid="${ele.orderid}" class="addCarry">${ele.carryid?"正在配送":"匹配搬运工"}</div>`
-						}else if(ele.status==6){
-							driverStatus = '已完成';
-							carryStatus = '未开始';
-							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;" data-orderid="${ele.orderid}" class="addCarry">${ele.carryid?"正在配送":"匹配搬运工"}</div>`
-						}else if(ele.status==7){
-							driverStatus = '已完成';
-							carryStatus = '搬运中';
-							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;">正在配送</div>`
-						}else if(ele.status==8){
-							driverStatus = '已完成';
-							carryStatus = '搬运完成';
-							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;">导出订单</div>`
-						}else if(ele.status==9){
-							driverStatus = '已取消';
-							carryStatus = '已取消';
-							matching = `<div style="border: 1px solid #999;padding: 6px 10px;width: 120px;text-align: center;">已取消</div>`
+						
+						let driverStatus,carryStatus,status_mat;
+						if(ele.status==1){
+							status_mat = "待发车"
+						}else if(ele.status==2){
+							status_mat = "已发车"
+						}else if(ele.status==3){
+							status_mat = "已送达"
+						}else{
+							status_mat = "已搬运"
 						}
+//						else if(ele.status==3){
+//							status_mat = "已送达"
+//						}else if(ele.status==4){
+//							status_mat = "已完成"
+//						}else if(ele.status==5){
+//							status_mat = "待审核"
+//						}else if(ele.status==6){
+//							status_mat = "已审核"
+//						}
+						
 						let driverimg = ele.driverimg?`<img src="${ele.driverimg}" class="driverimgs" />`:'';
 						let carrimg = ele.carrimg?`<img src="${ele.carrimg}" class="carrimgs" />`:'';
-						obj.status = `<div class="order_status">
-						<div>
-							<div>司机端：${driverStatus}</div>
-							${driverimg}
-						</div>
-						<div>
-							<div>搬运工端：${carryStatus}</div>
-							${carrimg}
-						</div>
-					</div>`
+						obj.status = `${status_mat}`
+						let driverMsgs = ``;
+						let carryMsgs = ``;
+						let statusmsg = ``;
+						if(ele.driverAndWorkerInfo&&ele.driverAndWorkerInfo.length>0){
+							
+							for(let i=0;i<ele.driverAndWorkerInfo.length;i++){
+								if(ele.driverAndWorkerInfo[i].driver_name&&ele.driverAndWorkerInfo[i].driver_name!='null'){
+									driverMsgs = driverMsgs + `<div>${ele.driverAndWorkerInfo[i].driver_name}</div>
+							<div>${ele.driverAndWorkerInfo[i].driver_phone}</div>`
+								}else{
+									driverMsgs = driverMsgs + `<div>未匹配司机</div>`
+								}
+								if(ele.driverAndWorkerInfo[i].worker_name&&ele.driverAndWorkerInfo[i].worker_name!='null'){
+									carryMsgs = carryMsgs + `<div>${ele.driverAndWorkerInfo[i].worker_name}</div>
+									<div>${ele.driverAndWorkerInfo[i].worker_phone}</div>`
+								}else{
+									carryMsgs = carryMsgs + `<div>未匹配搬运工</div>`
+								}
+								if(ele.driverAndWorkerInfo[i].status){
+									if(ele.driverAndWorkerInfo[i].match_status==1){
+										
+										if(ele.driverAndWorkerInfo[i].is_sharing==1){
+											statusmsg = statusmsg + `<div>已装车(已拼单)</div>`
+										}else{
+											statusmsg = statusmsg + `<div>已装车(不拼单)</div>`
+										}
+									}else{
+//										if(ele.driverAndWorkerInfo[i].is_sharing==1){
+//											statusmsg = statusmsg + `<div>未装车(已拼单)</div>`
+//										}else{
+//											statusmsg = statusmsg + `<div>未装车(不拼单)</div>`
+//										}
+										statusmsg = statusmsg + `<div>待发车</div>`
+									}
+									
+								}
+							}
+						}else{
+							driverMsgs = "未匹配";
+							carryMsgs = "未匹配";
+						}
+						obj.drivermsg = `<div style="display: flex;flex-direction: column;">${driverMsgs}</div>`
+						obj.carrymsg = `<div style="display: flex;flex-direction: column;">${carryMsgs}</div>`
+						obj.carstatus = `<div style="display: flex;flex-direction: column;">${statusmsg}</div>`
 						obj.operation = matching
 						arr.push(obj)
 					});
+					
+					// let orders = []
+					// layui.use(['form'], function () {
+					//     var form = layui.form;
+					// 	form.on('checkbox(switchTest)', function (data) {
+					// 	    if( data.elem.checked){　　　　　　
+					// 		   var order = data.elem.getAttribute('order')
+					// 		   orders.push(order)
+					// 	    }else{
+					// 			for(let i = 0; i < orders.length; i++) {
+					// 				if(orders[i] == data.elem.getAttribute('order')) {
+					// 					orders.splice(i,1)
+					// 				}
+					// 			}
+					// 		}
+					// 	});
+						
+					// })
+					
 					return arr;
 				}
 				function addCarry(){
 					member_add('选择搬运工','carryList.html','500','400')
 				}
 				function userOpreation() {
-					$('.addCarry').click(function(e){
-						console.log(e)
+					$('.search').off().on('click',function(e){
+						requestData()
+						
+					})
+					$('.passOrder').off().on('click',function(e){
+						var id = e.currentTarget.dataset.id||e.target.dataset.id;
+						$.ajax({
+							type:"get",
+//							url:"http://192.168.0.105:9002/secondController/updateSecondSellOrder?id=" + id + "&addressType=" + addressType,
+							url:"http://js.jinshapeison.com/secondController/updateSecondSellOrder?id=" + id + "&addressType=" + addressType,
+							success: res=>{
+								console.log(res)
+								if(res.code==0){
+									layui.use('layer',function(){
+										layui.layer.msg('已通过')
+									})
+									requestData(typenum);
+								}else{
+									layui.use('layer',function(){
+										layui.layer.msg(res.message)
+									})
+								}
+							},
+							fail: err=>{
+								layui.use('layer',function(){
+									layui.layer.msg(err.message)
+								})
+							}
+						});
+					})
+					$('.addCarry').off().on('click',function(e){
+//						console.log(e)
 						sessionStorage.setItem("nowOrderId",e.currentTarget.dataset.orderid)
 						addCarry();
+					})
+					$('.export').off().on('click',function(e){
+						let id = e.currentTarget.dataset.id||e.target.dataset.id;
+						let a = document.createElement("a");
+						a.style.display = "none";
+//						a.href = "http://192.168.0.109:9002/secondController/excelDownload?orderId="+id;
+						a.href = "http://js.jinshapeison.com/secondController/excelDownload?orderId="+id;
+						document.body.appendChild(a);
+						a.click();
+						document.body.removeChild(a);
 					})
 				}
 				let startTime,endTime,phone;
 				$('.userphone').on('input',function(e){
-					console.log(e)
+//					console.log(e)
 					phone = e.target.value;
 				})
-				console.log($('.findOrder'))
+//				console.log($('.findOrder'))
 				$('.findOrder').click(function(e){
-					console.log(e)
+//					console.log(e)
 					let searchObj = {};
 					if(startTime&&startTime!=''){
 						searchObj.startTime = startTime;
@@ -561,13 +729,14 @@
 						searchObj.phone = phone;
 					}
 					searchObj.usertype="销售"
-					console.log(searchObj)
+//					console.log(searchObj)
 					$.ajax({
 						method:'post',
-						url:'http://192.168.0.100:9001/order/findByTimeOrPhone',
+						url:'http://js.jinshapeison.com/order/findByTimeOrPhone',
+//						url:'http://192.168.0.109:9002/order/findByTimeOrPhone',
 						data:searchObj
 					}).then(res=>{
-						console.log(res)
+//						console.log(res)
 						let datas = res.data;
 						if(typenum == 0) {
 							let arr = [];
@@ -615,18 +784,54 @@
 						//						console.log(datas)
 						comuserList = datas;
 						if(datas.length > 0) {
-							userLists = tableData(datas)
+//							$.each(datas,function(index,ele){
+//								if(ele.driverid && ele.driverid != '') {
+//									$.ajax({
+//										type: "post",
+//										url: "http://js.jinshapeison.com/superUser/findComUserById",
+//										data: {
+//											userid: ele.driverid
+//										},
+//										async: false
+//									}).then(user => {
+//										console.log(user)
+//										ele.drivermsg = user.data[0]
+//									})
+//								}
+//								if(ele.carryid && ele.carryid != '') {
+//									$.ajax({
+//										type: "post",
+//										url: "http://js.jinshapeison.com/superUser/findComUserById",
+//										data: {
+//											userid: ele.carryid,
+//											usertype:'搬运工'
+//										},
+//										async: false
+//									}).then(user => {
+//										console.log(user)
+//										ele.carrymsg = user.data[0]
+//									})
+//								}
+//							})
+							console.log(datas)
+							setTimeout(function(){userLists = tableData(datas);console.log(tableData(datas))},500)
+							
 						} else {
 							userLists = [];
 						}
-						layui.use('table', function() {
-							var table = layui.table;
-							table.reload('userList', {
-								data: userLists.filter(function(data, index) {
-									return data;
-								})
-							});
-						})
+						setTimeout(function(){
+							layui.use('table', function() {
+								var table = layui.table;
+								table.reload('userList', {
+									data: userLists.filter(function(data, index) {
+										return data;
+									}),
+									page: {
+							            curr: 1 //重新从第 1 页开始
+							        },
+								});
+							})
+						},600)
 						setTimeout(function() {
 							userOpreation()
 						}, 1000)
@@ -640,7 +845,7 @@
 					laydate.render({
 						elem: '#LAY_demorange_s',
 						done:function(value,date,endDate){
-							console.log(value)
+//							console.log(value)
 							startTime = value + ' 00:00:00'
 						}
 					});
@@ -648,7 +853,7 @@
 					laydate.render({
 						elem: '#LAY_demorange_e',
 						done:function(value,date,endDate){
-							console.log(value)
+//							console.log(value)
 							endTime = value + ' 00:00:00'
 						}
 					});
@@ -659,41 +864,51 @@
 						cols: [
 							[{
 									field: 'ordermsg',
-									title: '订单信息'
-								},
-								{
-									field: 'promsg',
-									title: '商品信息'
-								},
-								{
-									field: 'pricemsg',
-									title: '价格信息'
-								},
-								{
-									field: 'paymsg',
-									title: '支付信息'
+									title: '订单信息',
+									minWidth: 230
 								},
 								{
 									field: 'customermsg',
-									title: '客户信息'
+									title: '客户信息',
+									minWidth: 230
 								},
 								{
-									field: 'transport',
-									title: '运输工人信息'
+									field: 'promsg',
+									title: '商品信息',
+									minWidth: 424
+								},
+								{
+									field: 'pricemsg',
+									title: '价格信息',
+									minWidth: 200
+								},
+								
+								
+								{
+									field: 'carstatus',
+									title: '车辆状态',
+									minWidth: 140
+								},
+								{
+									field: 'drivermsg',
+									title: '司机信息',
+									minWidth: 110
+								},
+								{
+									field: 'carrymsg',
+									title: '搬运工信息',
+									minWidth: 110
 								},
 								{
 									field: 'status',
-									title: '状态'
-								},
-								{
-									field: 'operation',
-									title: '操作'
+									title: '状态',
+									minWidth: 83
 								}
 							]
 						],
 						data: userList,
 						done: function() {
-
+							userOpreation()
 						}
 					})
 
@@ -702,11 +917,11 @@
 					requestData(typenum);
 				}, 500)
 			})
-
 			/*用户-添加*/
 			function member_add(title, url, w, h) {
 				x_admin_show(title, url, w, h);
 			}
+			
 		</script>
 
 	</body>

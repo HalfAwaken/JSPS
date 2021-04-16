@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>金莎配送</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+		<link rel="stylesheet" type="text/css" href="./css/allOrder.css"/>
+		<style type="text/css">
+			input::placeholder {
+				color: #999 !important;
+			}
+			
+			.layui-form-label {
+				width: 100px !important;
+			}
+			
+			.layui-form-item .layui-input-inline {
+				width: 400px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 顶部开始 -->
+		<div class="container">
+			<div class="logo">
+				<a href="index.html" style="color: white;">金莎配送</a>
+			</div>
+			<div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+			<ul class="layui-nav right" lay-filter="">
+				<li class="layui-nav-item">
+					<a href="javascript:;">admin</a>
+					<dl class="layui-nav-child">
+						<!-- 二级菜单 -->
+						<dd>
+							<a href="">个人信息</a>
+						</dd>
+						<dd>
+							<a href="">切换帐号</a>
+						</dd>
+						<dd class="exit">
+							<a href="index.html">退出</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="appmanager.html">前台首页</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 顶部结束 -->
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 左侧菜单开始 -->
+			<div class="left-nav">
+				<div id="side-nav">
+					<ul id="nav">
+						<li class="list">
+							<a href="appmanager.html">
+								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="car_manager.html">
+								<i class="iconfont">&#xe761;</i> 车辆管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="tips.html">
+								<i class="iconfont">&#xe761;</i> 温馨提示
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="examine.html">
+								<i class="iconfont">&#xe761;</i> 注册管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe70b;</i> 用户管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="member-list.html">
+										<i class="iconfont">&#xe6a7;</i> 内部销售管理
+									</a>
+								</li>
+								<li>
+									<a href="member-del.html">
+										<i class="iconfont">&#xe6a7;</i> 司机管理
+									</a>
+								</li>
+								<li>
+									<a href="member-level.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工管理
+									</a>
+								</li>
+								<!--<li>
+									<a href="member-kiss.html">
+										<i class="iconfont">&#xe6a7;</i> 外部销售管理
+									</a>
+								</li>-->
+								<!--<li>
+									<a href="driverLeave.html">
+										<i class="iconfont">&#xe6a7;</i> 司机请假审核
+									</a>
+								</li>-->
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 商品管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="category.html">
+										<i class="iconfont">&#xe6a7;</i> 商品分类
+									</a>
+								</li>
+								<li>
+									<a href="product.html">
+										<i class="iconfont">&#xe6a7;</i> 商品列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 轮播管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="setBanner.html">
+										<i class="iconfont">&#xe6a7;</i> 轮播列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i> 订单管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<!--<li>
+									<a href="order.html">
+										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>-->
+								<li>
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
+									</a>
+								</li>
+								<li>
+									<a href="driverOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 司机订单
+									</a>
+								</li>
+								<li>
+									<a href="hamalOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 搬运工订单
+									</a>
+								</li>
+								
+							</ul>
+						</li>
+						<li class="list">
+							<a href="order.html">
+								<i class="iconfont">&#xe761;</i> 调班系统
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list" current>
+							<a href="allOrder.html">
+								<i class="iconfont">&#xe761;</i> 调班系统新
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="proHis.html">
+								<i class="iconfont">&#xe761;</i> 销售统计
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 左侧菜单结束 -->
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<h2>调班系统</h2>
+					<div class="choiceDay">
+						<div class="today active" data-type="1"></div>
+						<div class="tomorrow" data-type="2"></div>
+						<div class="twodays" data-type="3"></div>
+					</div>
+					<div class="title_wrap">
+						<div class="title"></div>
+						<div class="status_style">
+							<div class="full">满车</div>
+							<div class="spell">拼车</div>
+							<div class="empty">空车</div>
+							<div class="open" style="color: #333;">已发车</div>
+						</div>
+					</div>
+					<div class="con">
+						<div class="con_item seven">
+							<h3>7点前</h3>
+							<div class="car_wrap">
+								
+							</div>
+						</div>
+						<div class="con_item ten">
+							<h3>10点前</h3>
+							<div class="car_wrap">
+								
+							</div>
+						</div>
+						<div class="con_item twelve">
+							<h3>12点前</h3>
+							<div class="car_wrap">
+								
+							</div>
+						</div>
+						<div class="con_item fourteen">
+							<h3>14点前</h3>
+							<div class="car_wrap">
+								
+							</div>
+						</div>
+						<div class="con_item seventeen">
+							<h3>17点前</h3>
+							<div class="car_wrap">
+								
+							</div>
+						</div>
+						<div class="con_item twenty">
+							<h3>20:00-23:30</h3>
+							<div class="car_wrap">
+								
+							</div>
+						</div>
+					</div>
+					<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+		<!-- 底部开始 -->
+		<!--<div class="footer">
+        <div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved. 本后台系统由X前端框架提供前端技术支持</div>  
+    </div>-->
+		<!-- 底部结束 -->
+		<!-- 背景切换开始 -->
+		<div class="bg-changer">
+			<div class="swiper-container changer-list">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img class="item" src="images/a.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/b.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/c.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/d.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/e.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/f.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/g.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/h.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/i.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/j.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="images/k.jpg" alt=""></div>
+					<div class="swiper-slide"><span class="reset">初始化</span></div>
+				</div>
+			</div>
+			<div class="bg-out"></div>
+			<div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+			
+		</div>
+		<!-- 背景切换结束 -->
+
+	</body>
+	<!--<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>-->
+	<!--<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			let today = new Date().toLocaleDateString();
+			let tomorrow = new Date(new Date().getTime()+24*60*60*1000).toLocaleDateString();
+			let twodays = new Date(new Date().getTime()+24*60*60*1000*2).toLocaleDateString();
+			let type = 1;
+			let nowDay = today;
+			let addressType = sessionStorage.getItem("addressType");
+			$('.today').html(today);
+			$('.tomorrow').html(tomorrow);
+			$('.twodays').html(twodays);
+			$('.con').on('click','.car_wrap_item>div',function(e){
+				console.log(e)
+				let id = e.currentTarget.dataset.id;
+				let types = e.currentTarget.dataset.types;
+				let name = e.currentTarget.dataset.name;
+				let type2 = e.currentTarget.dataset.status;
+				member_add('选择拼单','allOrder_spell.html?id='+id+'&types='+types+'&type='+type+'&name='+name+'&status='+type2,'1100','800',function(){
+					getAllOrder();
+					getCar();
+				})
+			})
+			$('.choiceDay div').click(function(e){
+//				console.log(e)
+//				console.log($(this))
+//				console.log($('.choiceDay div'))
+				$('.choiceDay div').removeClass("active");
+				let types = e.currentTarget.dataset.type;
+				$(this).addClass("active");
+				type = types;
+				if(type==1){
+					nowDay = today;
+				}else if(type==2){
+					nowDay = tomorrow;
+				}else if(type==3){
+					nowDay = twodays;
+				}
+				getAllOrder();
+				getCar();
+			})
+			getAllOrder();
+			getCar();
+			function getAllOrder(){
+				$.ajax({
+					type:"get",
+					url:"http://js.jinshapeison.com/secondController/thirdFindOrderInfo?addressType="+addressType+'&delivery='+nowDay.split("/")[0]+'-'+nowDay.split("/")[1]+'-'+nowDay.split("/")[2],
+					success:res=>{
+						console.log(res)
+						let str = `今日订单总数为<span>${res.data.totalOrderNumber}</span>单，已匹配${res.data.MachOrderNumber}单，未匹配${res.data.NotMachOrderNumber}单。`;
+						$('.title').html(str)
+					}
+				});
+			}
+			$('.con').on('click','.openCars',function(e){
+				console.log(e)
+				let nowcarid = e.currentTarget.dataset.id||e.target.dataset.id;
+				layui.use('layer',function(){
+					layui.layer.confirm('确定要发车吗？',res=>{
+						console.log(res)
+						if(res){
+							$.ajax({
+								type:"get",
+//								url:"http://192.168.0.109:9002/secondController/thirdConfirmOrder?cartId="+nowcarid+'&dayType='+type+'&delivery='+nowDay.split("/")[0]+'-'+nowDay.split("/")[1]+'-'+nowDay.split("/")[2],
+								url:"http://js.jinshapeison.com/secondController/thirdConfirmOrder?cartId="+nowcarid+'&dayType='+type+'&delivery='+nowDay.split("/")[0]+'-'+nowDay.split("/")[1]+'-'+nowDay.split("/")[2],
+								success:ref=>{
+									console.log(ref)
+									layui.layer.close(res);
+									layui.layer.msg("发车成功");
+								}
+							})
+						}
+					})
+				})
+			})
+			function getCar(){
+				$.ajax({
+					type:"get",
+					url:'http://js.jinshapeison.com/secondController/thirdBackFindCart?addressType='+addressType+'&dayType='+type,
+					success:res=>{
+						console.log(res)
+						
+						let one = "";
+						let two = "";
+						let three = "";
+						let four = "";
+						let five = "";
+						let six = "";
+						for(let i=0;i<res.data.length;i++){
+							let str = "";
+							if(res.data[i].status==1){
+								str = `<div class="car_wrap_item">
+										<div class="empty" data-id="${res.data[i].cart_id}" data-types="${res.data[i].cart_quantum}" data-name="${res.data[i].cart_name}" data-status="${res.data[i].status}">${res.data[i].cart_name}</div>
+										<p data-id="${res.data[i].cart_id}" class="openCars">发车</p>
+									</div>`
+							}else if(res.data[i].status==2){
+								str = `<div class="car_wrap_item">
+										<div class="spell" data-id="${res.data[i].cart_id}" data-types="${res.data[i].cart_quantum}" data-name="${res.data[i].cart_name}" data-status="${res.data[i].status}">${res.data[i].cart_name}</div>
+										<p data-id="${res.data[i].cart_id}" class="openCars">发车</p>
+									</div>`
+							}else if(res.data[i].status==3){
+								str = `<div class="car_wrap_item">
+										<div class="full" data-id="${res.data[i].cart_id}" data-types="${res.data[i].cart_quantum}" data-name="${res.data[i].cart_name}" data-status="${res.data[i].status}">${res.data[i].cart_name}</div>
+										<p data-id="${res.data[i].cart_id}" class="openCars">发车</p>
+									</div>`
+							}else if(res.data[i].status==4){
+								str = `<div class="car_wrap_item">
+										<div class="open" data-id="${res.data[i].cart_id}" data-types="${res.data[i].cart_quantum}" data-name="${res.data[i].cart_name}" style="color: #333;" data-status="${res.data[i].status}">${res.data[i].cart_name}</div>
+										<p>已发车</p>
+									</div>`
+							}
+							if(res.data[i].cart_quantum==1){
+								
+								one = one + str;
+							}else if(res.data[i].cart_quantum==2){
+								two = two + str;
+							}else if(res.data[i].cart_quantum==3){
+								three = three + str;
+							}else if(res.data[i].cart_quantum==4){
+								four = four + str;
+							}else if(res.data[i].cart_quantum==5){
+								five = five + str;
+							}else if(res.data[i].cart_quantum==6){
+								six = six + str;
+							}
+						}
+						$('.seven .car_wrap').html(one);
+						$('.ten .car_wrap').html(two);
+						$('.twelve .car_wrap').html(three);
+						$('.fourteen .car_wrap').html(four);
+						$('.seventeen .car_wrap').html(five);
+						$('.twenty .car_wrap').html(six);
+					}
+				});
+			}
+			
+		})
+		/*用户-添加*/
+		function member_add(title, url, w, h,callback) {
+//			console.log(ind)
+			x_admin_show(title, url, w, h,callback);
+		}
+	</script>
+
+</html>

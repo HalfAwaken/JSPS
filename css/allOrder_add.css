@@ -1,0 +1,78 @@
+.title_wrap{
+	display: flex;
+	align-content: center;
+}
+.title,.surplus{
+	font-size: 18px;
+	color: white;
+}
+.title>span,.surplus>span{
+	color: red;
+}
+.surplus{
+	margin-left: 50px;
+}
+.con{
+	margin-top: 20px;
+	height: 600px;
+	overflow-y: auto;
+	position: relative;
+}
+.con_item{
+	border: 1px solid white;
+	padding: 10px;
+	width: 100%;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	position: relative;
+}
+.con_item_title{
+	display: flex;
+	flex-wrap: wrap;
+}
+.con_item_title>div{
+	font-size: 16px;
+	color: white;
+	margin-bottom: 15px;
+	margin-right: 20px;
+}
+.con_item_title>div span{
+	color: red;
+}
+.con_detail_tit{
+	font-size: 16px;
+	color: white;
+}
+.con_detail_con{
+	width: calc(100% - 200px);
+	display: flex;
+	flex-wrap: wrap;
+}
+.con_detail_con>div{
+	font-size: 16px;
+	color: white;
+	margin-right: 20px;
+}
+.cancelOrder{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: orange;
+	color: white;
+	cursor: pointer;
+}
+.addOrder{
+	margin-top: 20px;
+	width: 100px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	background: orange;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+}

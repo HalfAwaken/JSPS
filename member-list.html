@@ -15,7 +15,17 @@
 		<script type="text/javascript" src="js/xadmin.js"></script>
 
 	</head>
-
+	<style type="text/css">
+		.recharge{
+			display: inline-block;cursor: pointer;margin-left: 10px;width: 50px;height: 24px;text-align: center;line-height: 24px;background: #F0AD4E;
+		}
+		.useHistory{
+			display: inline-block;cursor: pointer;width: 70px;height: 24px;text-align: center;line-height: 22px;border: 1px solid #ccc;box-sizing: border-box;margin-left: 10px;
+		}
+		.payHistory{
+			display: inline-block;cursor: pointer;width: 70px;height: 24px;text-align: center;line-height: 22px;border: 1px solid #ccc;box-sizing: border-box;margin-left: 10px;
+		}
+	</style>
 	<body>
 		<!-- 顶部开始 -->
 		<div class="container">
@@ -34,8 +44,8 @@
 						<dd>
 							<a href="">切换帐号</a>
 						</dd>
-						<dd>
-							<a href="login.html">退出</a>
+						<dd class="exit">
+							<a href="index.html">退出</a>
 						</dd>
 					</dl>
 				</li>
@@ -54,6 +64,24 @@
 						<li class="list" current>
 							<a href="appmanager.html">
 								<i class="iconfont">&#xe761;</i> 基本配置
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="car_manager.html">
+								<i class="iconfont">&#xe761;</i> 车辆管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="tips.html">
+								<i class="iconfont">&#xe761;</i> 温馨提示
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="examine.html">
+								<i class="iconfont">&#xe761;</i> 注册管理
 								<i class="iconfont nav_right">&#xe697;</i>
 							</a>
 						</li>
@@ -78,16 +106,16 @@
 										<i class="iconfont">&#xe6a7;</i> 搬运工管理
 									</a>
 								</li>
-								<li>
+								<!--<li>
 									<a href="member-kiss.html">
 										<i class="iconfont">&#xe6a7;</i> 外部销售管理
 									</a>
-								</li>
-								<li>
+								</li>-->
+								<!--<li>
 									<a href="driverLeave.html">
 										<i class="iconfont">&#xe6a7;</i> 司机请假审核
 									</a>
-								</li>
+								</li>-->
 							</ul>
 						</li>
 						<li class="list">
@@ -127,9 +155,14 @@
 								<i class="iconfont nav_right">&#xe697;</i>
 							</a>
 							<ul class="sub-menu" style="display:none">
-								<li>
+								<!--<li>
 									<a href="order.html">
 										<i class="iconfont">&#xe6a7;</i> 全部订单
+									</a>
+								</li>-->
+								<li>
+									<a href="saleOrder.html">
+										<i class="iconfont">&#xe6a7;</i> 销售订单
 									</a>
 								</li>
 								<li>
@@ -142,15 +175,31 @@
 										<i class="iconfont">&#xe6a7;</i> 搬运工订单
 									</a>
 								</li>
-								<li>
-									<a href="saleOrder.html">
-										<i class="iconfont">&#xe6a7;</i> 销售订单
-									</a>
-								</li>
+								
 							</ul>
+						</li>
+						<li class="list">
+							<a href="order.html">
+								<i class="iconfont">&#xe761;</i> 调班系统
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="allOrder.html">
+								<i class="iconfont">&#xe761;</i> 调班系统新
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="proHis.html">
+								<i class="iconfont">&#xe761;</i> 销售统计
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
 						</li>
 					</ul>
 				</div>
+				<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
 			</div>
 			<!-- 左侧菜单结束 -->
 			<!-- 右侧主体开始 -->
@@ -176,7 +225,7 @@
 							</div>
 						</div>
 					</form>-->
-					<xblock><button class="layui-btn" onclick="member_add('添加用户','member-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button></xblock>
+					<!--<xblock><button class="layui-btn" onclick="member_add('添加用户','member-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button></xblock>-->
 					<table id="userList" lay-filter="userList"></table>
 					<div id="operation" style="display: none;">
 						<a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
@@ -227,16 +276,33 @@
 		<!-- 背景切换结束 -->
 		<!-- 页面动态效果 -->
 		<script src="js/datatype.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			$(function() {
+				if(sessionStorage.getItem('token')!='true'){
+					location.href = './index.html';
+				}
+				$('.exit').click(function(){
+					sessionStorage.setItem("token",'false')
+				})
 				var userLists = [];
+				let addressType = sessionStorage.getItem("addressType");
+				if(addressType==1){
+					$('title').html("金莎配送天河区");
+					$('.logo a').html("金莎配送天河区");
+				}else{
+					$("title").html("金莎配送白云区");
+					$(".logo a").html("金莎配送白云区");
+				}
 				//				window.requestData = requestData;
 				function requestData() {
 					$.ajax({
 						type: "get",
-						url: "http://192.168.0.100/comUser/findAll",
+						url: "http://js.jinshapeison.com/comUser/findAll",
+//						url: "http://192.168.0.109:9002/comUser/findAll",
 						data: {
-							usertype: '内部销售'
+							usertype: '内部销售',
+							addressType
 						}
 					}).then(res => {
 //						console.log(res.data)
@@ -269,19 +335,20 @@
 					let arr = [];
 					$.each(data, function(index, ele) {
 						let obj = {};
-						console.log(ele, index)
+//						console.log(ele, index)
 						obj.nickname = ele.username;
 						obj.username = ele.phone;
-						obj.password = ele.password;
+//						obj.password = ele.password;
 						if(ele.isvip == 0) {
-							obj.vip = "<div class='becomeVip' data-id='" + ele.id + "' style='width: 80px;height: 30px;background: red;color: white;text-align: center;line-height: 30px;'>设为会员</div>"
+							obj.vip = "<div class='becomeVip' data-id='" + ele.userid + "' style='width: 80px;height: 30px;background: red;color: white;text-align: center;line-height: 30px;'>设为会员</div>"
 						} else {
-							obj.vip = "<div class='cancelVip' data-id='" + ele.id + "' style='width: 80px;height: 30px;background: #999;color: white;text-align: center;line-height: 30px;'>取消会员</div>"
+							obj.vip = "<div class='cancelVip' data-id='" + ele.userid + "' style='width: 80px;height: 30px;background: #999;color: white;text-align: center;line-height: 30px;'>取消会员</div>"
 						}
+						obj.money = ele.money;
 						if(ele.status == 1) {
-							obj.operation = "<div><span style='color: #76EE00;'>正常</span> | <span style='color: #999;' class='stopUser' data-id='" + ele.id + "'>停用</span></div>"
+							obj.operation = "<div><span style='color: #76EE00;'>正常</span> | <span style='color: #999;' class='stopUser' data-id='" + ele.userid + "'>停用</span><span class='recharge' data-id='"+ele.userid+"'>充值</span><span class='useHistory' data-id='"+ele.userid+"'>消费记录</span><span class='payHistory' data-id='"+ele.userid+"'>充值记录</span></div>"
 						} else {
-							obj.operation = "<div><span style='color: #999;' class='openUser' data-id='" + ele.id + "'>启用</span> | <span style='color: red;'>已停用</span></div>"
+							obj.operation = "<div><span style='color: #999;' class='openUser' data-id='" + ele.userid + "'>启用</span> | <span style='color: red;'>已停用</span><span class='recharge' data-id='"+ele.userid+"'>充值</span><span class='useHistory' data-id='"+ele.userid+"'>消费记录</span><span class='payHistory' data-id='"+ele.userid+"'>充值记录</span></div>"
 						}
 						arr.push(obj)
 					});
@@ -289,12 +356,25 @@
 				}
 
 				function userOpreation() {
-					$('.stopUser').click(function() {
-						console.log($(this))
+					$('.recharge').off().on('click',function(e){
+						let id = $(this)[0].dataset.id;
+						member_add('充值','recharge.html?id='+id,'600','500');
+					})
+					$('.useHistory').off().on('click',function(e){
+						let id = $(this)[0].dataset.id;
+						member_add('消费记录','useHistory.html?id='+id,'1200','700');
+					})
+					$('.payHistory').off().on('click',function(e){
+						let id = $(this)[0].dataset.id;
+						member_add('充值记录','payHistory.html?id='+id,'1200','700');
+					})
+					$('.stopUser').off().on('click',function() {
+//						console.log($(this))
 						let id = $(this)[0].dataset.id;
 						$.ajax({
 							type: "post",
-							url: "http://192.168.0.100/comUser/updateComUser",
+							url: "http://js.jinshapeison.com/comUser/updateComUser",
+//							url: "http://192.168.0.101:9002/comUser/updateComUser",
 							data: {
 								id: id,
 								status: 0
@@ -303,11 +383,12 @@
 							requestData();
 						})
 					})
-					$('.openUser').click(function() {
+					$('.openUser').off().on('click',function() {
 						let id = $(this)[0].dataset.id;
 						$.ajax({
 							type: "post",
-							url: "http://192.168.0.100/comUser/updateComUser",
+							url: "http://js.jinshapeison.com/comUser/updateComUser",
+//							url: "http://192.168.0.101:9002/comUser/updateComUser",
 							data: {
 								id: id,
 								status: 1
@@ -316,11 +397,12 @@
 							requestData();
 						})
 					})
-					$('.becomeVip').click(function() {
+					$('.becomeVip').off().on('click',function() {
 						let id = $(this)[0].dataset.id;
 						$.ajax({
 							type: "post",
-							url: "http://192.168.0.100/comUser/updateComUser",
+							url: "http://js.jinshapeison.com/comUser/updateComUser",
+//							url: "http://192.168.0.101:9002/comUser/updateComUser",
 							data: {
 								id: id,
 								isvip: 1
@@ -329,11 +411,12 @@
 							requestData();
 						})
 					})
-					$('.cancelVip').click(function() {
+					$('.cancelVip').off().on('click',function() {
 						let id = $(this)[0].dataset.id;
 						$.ajax({
 							type: "post",
-							url: "http://192.168.0.100/comUser/updateComUser",
+							url: "http://js.jinshapeison.com/comUser/updateComUser",
+//							url: "http://192.168.0.101:9002/comUser/updateComUser",
 							data: {
 								id: id,
 								isvip: 0
@@ -367,13 +450,13 @@
 									field: 'username',
 									title: '销售账户'
 								},
+//								{
+//									field: 'password',
+//									title: '账户密码'
+//								},
 								{
-									field: 'password',
-									title: '账户密码'
-								},
-								{
-									field: 'vip',
-									title: '设为会员'
+									field: 'money',
+									title: '剩余额度'
 								},
 								{
 									field: 'operation',
@@ -383,7 +466,7 @@
 						],
 						data: userList,
 						done: function() {
-
+							userOpreation()
 						}
 					})
 

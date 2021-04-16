@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>选择拼单</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/font.css">
+		<link rel="stylesheet" href="css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/xadmin.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/allOrder_spell.css"/>
+	</head>
+	<style type="text/css">
+		.wrapper .page-content{width: 100%;}
+		.title_wrap>div{line-height: 24px;font-size: 18px;}
+		.driver_name,.choice_driver,.carry_name,.choice_carry{margin-left: 15px;}
+		.title_wrap .choice_driver,.title_wrap .choice_carry{width: 80px;height: 24px;background: limegreen;font-size: 14px;text-align: center;border-radius: 3px;cursor: pointer;}
+		.title_wrap .choice_driver:hover{opacity: .8;}
+		.title_wrap .choice_carry:hover{opacity: .8;}
+	</style>
+	<body>
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content" style="min-height: 0;">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<div class="title_wrap">
+						<div class="title"></div>
+						<div class="surplus"></div>
+						<div class="driver_name">司机：无</div>
+						<div class="choice_driver">匹配司机</div>
+						<div class="carry_name">搬运工：无</div>
+						<div class="choice_carry">匹配搬运工</div>
+					</div>
+					<div class="con">
+						
+					</div>
+					<div class="addOrder">添加订单</div>
+					<audio class="showtips" src="images/yinxiao1323.mp3" id="audio-player" controls style="display: none;"></audio>
+					<div class="aa"></div>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+
+	</body>
+	<script src="js/datatype.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/tips.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(function() {
+			var driver_ids = 1;
+			var carry_ids = 1;
+			var driverAtype,carryAtype;
+			var order_ids = "";
+			let hrefs = location.search;
+			hrefs = hrefs.substring(1);
+			console.log(hrefs);
+			let id = hrefs.split("&")[0].split("=")[1];
+			let cart_quantum = hrefs.split("&")[1].split("=")[1];
+			let type = hrefs.split("&")[2].split("=")[1];
+			let name = decodeURI(hrefs.split("&")[3].split("=")[1]);
+			let status = hrefs.split("&")[4].split("=")[1];
+			if(status==4){
+				$('.addOrder').hide();
+			}
+			$('.choice_driver').click(function(){
+				if(order_ids&&driverAtype){
+					sessionStorage.setItem("order_ids",order_ids)
+					member_add('选择司机', 'driverList.html?atype='+driverAtype, '500', '400')
+				}
+			})
+			$('.choice_carry').click(function(){
+				if(order_ids&&carryAtype){
+					sessionStorage.setItem("order_ids",order_ids)
+					member_add('选择搬运工', 'carryList.html?atype='+carryAtype, '500', '400')
+				}
+			})
+			
+			$('.addOrder').click(function(e){
+				console.log(e)
+				let ids = id;
+				let types = cart_quantum;
+				let names = name;
+				$.ajax({
+					type:"get",
+					url:"http://js.jinshapeison.com/secondController/thirdBackFindCartHaveOrder?addressType="+addressType+'&cartId='+id+'&cartQuantum='+cart_quantum+'&delivery='+nowday.split("/")[0]+'-'+nowday.split("/")[1]+'-'+nowday.split("/")[2],
+					success:rek=>{
+						if(rek.data[1].length==0){
+							member_add('选择拼单','allOrder_add.html?id='+ids+'&types='+types+'&type='+type+'&name='+names+'&fs='+$('.surplus span').text()+'&empty=1&driverId='+driver_ids+'&carryId='+carry_ids,'1000','700')
+						}else{
+							member_add('选择拼单','allOrder_add.html?id='+ids+'&types='+types+'&type='+type+'&name='+names+'&fs='+$('.surplus span').text()+'&empty=2&driverId='+driver_ids+'&carryId='+carry_ids,'1000','700')
+						}
+					}
+				})
+				
+			})
+			
+			$('.con').on('click','.cancelOrder',function(e){
+				layui.use('layer',function(){
+					var layer = layui.layer;
+					layer.confirm("确定要取消吗？",function(res){
+						console.log(res)
+						let cart_order_id = e.currentTarget.dataset.id;
+						if(res){
+							$.ajax({
+								type:"get",
+								url:"http://js.jinshapeison.com/secondController/thirdBackFindCartHaveOrder?addressType="+addressType+'&cartId='+id+'&cartQuantum='+cart_quantum+'&delivery='+nowday.split("/")[0]+'-'+nowday.split("/")[1]+'-'+nowday.split("/")[2],
+								success:rek=>{
+									
+									if(rek.data[1].length>1){
+										$.ajax({
+											type:"get",
+											url:'http://js.jinshapeison.com/secondController/thirdCancelMatch?cartOrderId='+cart_order_id+'&type='+1+'&dayType='+type+'&cartId='+id,
+											success:ref=>{
+												console.log(ref)
+												if(ref.code==0){
+													layer.close(res)
+													layer.msg("取消成功");
+													getOrder();
+												}else{
+													layer.close(res)
+													layer.msg(ref.message);
+												}
+											}
+										})
+									}else{
+										$.ajax({
+											type:"get",
+											url:'http://js.jinshapeison.com/secondController/thirdCancelMatch?cartOrderId='+cart_order_id+'&type='+2+'&dayType='+type+'&cartId='+id,
+											success:ref=>{
+												console.log(ref)
+												if(ref.code==0){
+													layer.close(res)
+													layer.msg("取消成功");
+													getOrder();
+												}else{
+													layer.close(res)
+													layer.msg(ref.message);
+												}
+											}
+										})
+									}
+								}
+							});
+						}
+					})
+				})
+				
+			})
+			
+			let addressType = sessionStorage.getItem("addressType");
+			let nowday;
+			if(type==1){
+				nowday = new Date().toLocaleDateString();
+			}else if(type==2){
+				nowday = new Date(new Date().getTime()+24*60*60*1000).toLocaleDateString();
+			}else if(type==3){
+				nowday = new Date(new Date().getTime()+24*60*60*1000*2).toLocaleDateString();
+			}
+			
+			function getMsg(){
+				$.ajax({
+					type:"get",
+					url:"http://js.jinshapeison.com/secondController/thirdSearchDriverOrWorker?cartId="+id+'&delivery='+nowday.split("/")[0]+'-'+nowday.split("/")[1]+'-'+nowday.split("/")[2],
+//					url:"http://192.168.0.109:9002/secondController/thirdSearchDriverOrWorker?cartId="+id+'&delivery='+nowday.split("/")[0]+'-'+nowday.split("/")[1]+'-'+nowday.split("/")[2],
+					success:res=>{
+						console.log(res)
+						if(res.data.driver_id&&res.data.driver_id!='null'){
+							$('.driver_name').html("司机："+res.data.driver_name);
+							driver_ids = res.data.driver_id;
+							$('.choice_driver').html("修改司机");
+							driverAtype = 2;
+						}else{
+							driverAtype = 1;
+							driver_ids = 1;
+						}
+						if(res.data.worker_id&&res.data.worker_id!='null'){
+							$('.carry_name').html("搬运工："+res.data.worker_name);
+							$('.choice_carry').html("修改搬运工");
+							carry_ids = res.data.worker_id;
+							carryAtype = 2;
+						}else{
+							carryAtype = 1;
+							carry_ids = 1;
+						}
+					}
+				})
+			}
+			getMsg();
+			getOrder();
+			function getOrder(){
+				$.ajax({
+					type:"get",
+					url:"http://js.jinshapeison.com/secondController/thirdBackFindCartHaveOrder?addressType="+addressType+'&cartId='+id+'&cartQuantum='+cart_quantum+'&delivery='+nowday.split("/")[0]+'-'+nowday.split("/")[1]+'-'+nowday.split("/")[2],
+//					url:"http://192.168.0.109:9002/secondController/thirdBackFindCartHaveOrder?addressType="+addressType+'&cartId='+id+'&cartQuantum='+cart_quantum+'&delivery='+nowday.split("/")[0]+'-'+nowday.split("/")[1]+'-'+nowday.split("/")[2],
+					success:res=>{
+						console.log(res);
+						$('.surplus').html(`剩余可拼方数：<span>${res.data[0].NotUseSize}</span>方`)
+						let datas = res.data[1];
+						let pcStr = "";
+						if(datas[0] != null) {
+							if(datas[0].is_sharing==1){
+							pcStr = "拼车";
+							}else if(datas[0].is_sharing==2){
+								pcStr = "不拼车";
+							}
+						}
+						if(cart_quantum==1){
+							$('.title').html(`选择:${pcStr}(7点前<span>${name}</span>号车)`)
+						}else if(cart_quantum==2){
+							$('.title').html(`选择:${pcStr}(10点前<span>${name}</span>号车)`)
+						}else if(cart_quantum==3){
+							$('.title').html(`选择:${pcStr}(12点前<span>${name}</span>号车)`)
+						}else if(cart_quantum==4){
+							$('.title').html(`选择:${pcStr}(14点前<span>${name}</span>号车)`)
+						}else if(cart_quantum==5){
+							$('.title').html(`选择:${pcStr}(17点前<span>${name}</span>号车)`)
+						}else if(cart_quantum==6){
+							$('.title').html(`选择:${pcStr}(20:00-23:30<span>${name}</span>号车)`)
+						}
+						let htmls = "";
+						for(let i=0;i<datas.length;i++){
+							order_ids = order_ids + datas[i].cart_order_id + ",";
+							let timestr;
+							if(cart_quantum==1){
+								timestr = "7点前";
+							}else if(cart_quantum==2){
+								timestr = "10点前";
+							}else if(cart_quantum==3){
+								timestr = "12点前";
+							}else if(cart_quantum==4){
+								timestr = "14点前";
+							}else if(cart_quantum==5){
+								timestr = "17点前";
+							}else if(cart_quantum==6){
+								timestr = "20:00-23:30";
+							}
+							let disstr = "";
+							if(datas[i].delivery_distance==0){
+								disstr = "无"
+							}else if(datas[i].delivery_distance==1){
+								disstr = "1-20米"
+							}else if(datas[i].delivery_distance==2){
+								disstr = "21-70米"
+							}else if(datas[i].delivery_distance==3){
+								disstr = "71-120米"
+							}else if(datas[i].delivery_distance==4){
+								disstr = "121-170米"
+							}
+							let shopstr = "";
+							console.log(datas[i].goods_list)
+							let proList = JSON.parse(datas[i].goods_list);
+							console.log(proList)
+							for(let j=0;j<proList.length;j++){
+								let nums;
+								if(proList[j].goodspe.indexOf("袋")!=-1){
+									let speNum = proList[j].goodspe.split("袋")[0];
+									nums = (Number(proList[j].qty)/Number(speNum)).toFixed(3);
+								}else if(proList[j].goodspe.indexOf("件")!=-1){
+									let speNum = proList[j].goodspe.split("件")[0];
+									nums = (Number(proList[j].qty)/Number(speNum)).toFixed(3);
+								}else{
+									nums = proList[j].qty;
+								}
+								let prostr = `<div>${proList[j].goodsName}：${nums}方</div>`;
+								shopstr = shopstr + prostr;
+							}
+							let cancelStr = "";
+							if(status!=4){
+								cancelStr = `<div class="cancelOrder" data-id="${datas[i].cart_order_id}">取消拼单</div>`;
+							}
+							
+							let str = `<div class="con_item">
+								<div class="con_item_title">
+									<div>订单号：${datas[i].order_id}</div>
+									<div>配送方数：<span>${datas[i].second_order_size}</span>方</div>
+									<div>配送时间：${datas[i].delivery} ${timestr}</div>
+									
+									<div>搬运(${datas[i].worker_type==1?'楼梯':'电梯'})<span>${datas[i].worker_num}</span>层</div>
+									<div>卸货距离：${disstr}</div>
+									<div>加${datas[i].add_worker_number!='null'?datas[i].add_worker_number:0}层</div>
+									<div>客户名称：${datas[i].receiver_name}</div>
+									<div>客户电话：${datas[i].receiver_phone}</div>
+									<div>客户地址：${datas[i].receiver_address}</div>
+								</div>
+								<div class="con_detail_tit">商品详情</div>
+								<div class="con_detail_con">
+									${shopstr}
+								</div>
+								<div class="con_comment">备注：${datas[i].comment}</div>
+								${cancelStr}
+							</div>`
+							htmls = htmls + str;
+						}
+						order_ids = order_ids.substring(0,order_ids.length-1);
+						$('.con').html(htmls)
+					}
+				});
+			}
+			
+//			layui.use('layer',function(){
+//				layer.msg('拼单成功');
+//				setTimeout(function(){
+//					var index = parent.layer.getFrameIndex(window.name);
+//					parent.location.reload();
+//					parent.layer.close(index);
+//				},1500)
+//			})
+		})
+		/*用户-添加*/
+		function member_add(title, url, w, h) {
+			x_admin_show(title, url, w, h);
+		}
+	</script>
+
+</html>
